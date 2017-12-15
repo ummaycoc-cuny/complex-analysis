@@ -9,4 +9,4 @@ The notes are a condensed tour of the text--main ideas are plucked and either
 paraphrased or quoted verbatim, with an emphasis on being a succinct resource
 for studying.
 
-Changes are accepted via the [https://gist.github.com/Chaser324/ce0505fbed06b947d962]{fork/pull-request workflow}.
+Changes are accepted via the [fork/pull-request workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962).

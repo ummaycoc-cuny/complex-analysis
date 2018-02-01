@@ -1,0 +1,349 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyheadings}
+\usepackage{graphicx}
+\usepackage[top=1.25in, bottom=1.25in, left=1.0in, right=1.0in]{geometry}
+\usepackage{hyperref}
+
+\pagestyle{fancy}
+
+\lhead{Complex Analysis Notes}
+\rhead{Graduate Center, CUNY, 2017-2018}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue} 
+\setcounter{tocdepth}{3}
+\title{Complex Analysis Notes\\
+Graduate Center, CUNY\\
+2017-2018 AY}
+\date{}
+
+\newcommand{\Mid}{\ \middle\vert\ }
+
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\exterior}{ext}
+\DeclareMathOperator{\len}{length}
+\DeclareMathOperator{\order}{ord}
+\DeclareMathOperator{\degree}{deg}
+\DeclareMathOperator{\diam}{diam}
+
+\newenvironment{topic}[1]{%
+{\subsection{#1}}%
+\begin{itemize}%
+}{%
+\end{itemize}%
+}
+
+\newcommand{\theorem}[1]{\item {\bf #1.}}
+\newcommand{\corollary}[1]{\item {\bf #1.}}
+\newcommand{\lemma}[1]{\item {\bf #1.}}
+\newcommand{\proposition}[1]{\item {\bf #1.}}
+\newcommand{\definition}[1]{\item}
+\newcommand{\term}[1]{{\bf #1}}
+\newcommand{\holo}[1]{\mathcal{O}(#1)}
+\newcommand{\remark}{\item}
+\newcommand{\entire}{\holo{\mathbb{C}}}
+\newcommand{\udisk}{\mathbb{D}}
+\newcommand{\disk}[2]{\mathbb{D}(#1, #2)}
+\newcommand{\cdisk}[2]{\overline{\mathbb{D}}(#1, #2)}
+\newcommand{\sphere}[2]{\mathbb{T}{(#1, #2)}}
+
+\begin{document}
+
+\maketitle
+
+{\large These notes are drawn from the upcoming text by \href{http://qcpages.qc.cuny.edu/~zakeri/}{\underline{Saeed Zakeri}} of Queens College in NY. Some remarks, theorems, etc are paraphrased; some remarks, theorems, etc are verbatim. Notes created with the permission of the professor, who retains all copyright rights regarding his work. This is, explicitly, a derivative work made with permission of the author.
+\\
+
+\noindent Section and subsection titles exactly follow the chapters and sections of the text as of the time of the writing.}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Rudiments of Complex Analysis}
+
+\begin{topic}{What is a holomorphic function?}
+
+\definition{Complex Differentiable} $f$ defined near $p \in \mathbb{C}$ and complex valued, is \term{complex differentiable} at $p$ if $$f^\prime(p) = \lim_{z \to p} \dfrac{f(z) - f(p)}{z - p}$$ exists. $f^\prime(p)$ and call it the \term{complex derivative} of $f$ at $p$.
+
+\remark Differentiability implies continuity.
+
+\theorem{Differentiation Rules} $f$ and $g$ differentiable at $p$:
+\begin{itemize}
+\item $(f + g)^\prime(p) = f^\prime(p) + g^\prime(p)$
+\item $(fg)^\prime(p) = f^\prime(p)g(p) + f(p)g^\prime(p)$,
+\item If $g(p) \neq 0$ then $\left(\frac{f}{g}\right)^\prime(p) = \frac{f^\prime(p)g(p) - f(p)g^\prime(p)}{(g(p))^2}$
+\end{itemize}
+If $g^\prime(p)$ and $f^\prime(g(p))$ exist, then $(f \circ g)^\prime(p) = f^\prime(g(p)) g^\prime(p)$.
+
+\remark $z = x + iy \mapsto (x, y)$ gives canonical isomorphism $\mathbb{C} \to \mathbb{R}^2$.\\
+$f = u + iv$ can be identified with $f(x, y) = (u(x, y), v(x, y))$ -- i.e. $f : \mathbb{C} \to \mathbb{C}$ vs $f : \mathbb{R}^2 \to \mathbb{R}^2$.
+$$f_x = u_x + i v_x, \hskip 0.3cm f_y = u_y + i v_y$$
+
+\remark {\em New} partial operators: 
+$$f_z = \frac{1}{2}\left(f_x - i f_y\right), \hskip 0.3cm f_{\overline{z}} = \frac{1}{2}\left(f_x - i f_y\right)$$
+$$f_x = f_z + f_{\overline{z}}, \hskip 0.3cm f_y = i(f_z - f_{\overline{z}})$$
+
+\theorem{Conditions for Differentiability} $f$ defined near $p \in \mathbb{C}$. Following are equivalent:
+\begin{itemize}
+\item Complex derivative $f^\prime(p)$ exists.
+\item Real derivative $Df(p)$ exists and $f_{\overline{z}} = 0$.
+\item Real derivative $Df(p)$ exists with $u_x = v_y$ and $u_y = -v_x$ at $p$.
+\end{itemize}
+In such cases $f^\prime(p) = f_z(p) = f_x(p) = -i f_y(p)$.
+
+\remark An angle preserving linear transformation is called \term{conformal}.
+
+\corollary{Conformality of Derivative} $f^\prime(p)$ exists and is non-zero. Then $Df(p) : \mathbb{R}^2 \to \mathbb{R}^2$ is an orientation preserving conformal linear transformation.
+
+\remark $U \subseteq \mathbb{C}$ non-empty and open, $f : U \to \mathbb{C}$ is \term{holomorphic} in $U$, written $f \in \holo{U}$, if $f^\prime(p)$ exists $\forall p \in U$. Elements of $\entire{}$ are called \term{entire}. $\holo{U}$ is closed under sums, products, and composition. Pointwise addition and multiplication makes $\holo{U}$ a commutative ring with identity.
+
+\theorem{Conditions for Being Holomorphic} Suppose $f = u + iv$, defined on $U$, is real differentiable. Then $f \in \holo{U}$ exactly when the following equivalent conditions hold throughout $U$:
+\begin{enumerate}
+\item $u_x = v_y$ and $u_y = -v_x$, the \term{Cauchy-Riemann Equations};
+\item $f_{\overline{z}} = 0$, the \term{Complex Cauchy-Riemann Equation}.
+\end{enumerate}
+In this case, $f^\prime = f_z = f_x = -if_y$.
+
+\end{topic}
+
+
+\begin{topic}{Complex analytic functions}
+
+\remark $\sum_{n=0}^\infty a_n (z - p)^n$, where $p, a_0, a_1, \ldots \in \mathbb{C}$, is a \term{power series}. Each power series has a \term{disk of convergence} about $p$: the series converges inside the disk, diverges outside it, and can do anything on the boundary. The disk's radius, possibly $0$ or $+\infty$, is the \term{radius of convergence} of the series.
+
+\theorem{Radius of Convergence} The radius of convergence for $\sum_{n=0}^\infty a_n (z - p)^n$ is $$R = \dfrac{1}{\limsup_{n \to \infty} \sqrt[n]{|a_n|}} \in [0, +\infty].$$ The series converges absolutely and uniformly inside $\disk{p}{r}$, $r < R$, and diverges for $z$ with $|z - p| > R$.
+
+\remark $U \subseteq \mathbb{C}$ non-empty and open, $f : U \to \mathbb{C}$ is \term{complex analytic} if when $\disk{p}{r} \subseteq U$ there is a power series $\sum_{n=0}^\infty a_n (z - p)^n$ converging to $f(z)$ whenever $z \in \disk{p}{r}$.
+
+\theorem{Analytic Implies Holomorphic} A complex analytic function has derivatives of all orders, each of which is complex analytic and can be found via term-by-term differentiation. The coefficients of a complex analytic function's power series are independent of the radius of disk under consideration: $a_n = f^{(n)}(p) / n!$, $n \geq 0$ ($p$ center of disk under consideration).
+
+\end{topic}
+
+
+\begin{topic}{Complex integration}
+
+\remark $U \subseteq \mathbb{C}$ non-empty and open; $\gamma : [a, b] \to U$, continuous, is a \term{curve} in $U$ with \term{initial point} $\gamma(a)$ and \term{end point} $\gamma(b)$, and it is \term{closed} if $\gamma(a) = \gamma(b)$. $|\gamma| = \{ \gamma(t) : t \in [a, b] \} \subseteq \mathbb{C}$ is the \term{image}. $\gamma$ is \term{piecewise $C^1$} if there is $a = t_0 < t_1 < \cdots < t_n = b$ with $\gamma$ continuously differentiable on $(t_{k-1}, t_k)$ and $\lim_{t \to t_{k-1}^+} \gamma^\prime(t)$ and $\lim_{t \to t_k^-} \gamma^\prime(t)$ exist.
+
+If $\gamma$ is a curve then $\gamma^-$ is the \term{reverse} of $\gamma$, and if $\eta$ is another curve starting where $\gamma$ ends, then $\gamma \cdot \eta$ is the \term{product} of $\gamma$ and $\eta$ and is formed by traversing $\gamma$ and then $\eta$.
+
+\remark Throughout the section, it will be assumed that all curves are piecewise $C^1$.
+
+\remark $\gamma : [a, b] \to \mathbb{C}$ a curve, $f : |\gamma| \to \mathbb{C}$ continuous. The \term{integral of $f$ along $\gamma$} is $$\int_\gamma f(z)\,dz = \int_a^b f(\gamma(t)) \gamma^\prime(t)\,dt$$ where $\gamma^\prime = d\gamma/dt$ is defined at all but finitely any points in $[a, b]$, and is invariant under orientation preserving reparameterizations. Note that $$\int_\gamma f(z)\,dz = - \int_{\gamma^-} f(z)\,dz, \hskip 0.5cm \int_{\gamma \cdot \eta} f(z)\,dz = \int_\gamma f(z)\,dz + \int_\eta f(z)\,dz.$$ For $f = u + iv$ and $\gamma(t) = x(t) + iy(t)$, $$\int_\gamma f(z)\,dz = \int_\gamma (u\,dx - v\,dy) + i \int_\gamma (v\,dx + u\,dy).$$
+
+\remark The \term{length} of a curve $\gamma$ is $\int_\gamma |dz| = \int_0^1 |\gamma^\prime(t)|\,dt$, denoted $\len(\gamma)$.
+
+\remark The \term{ML-inequality} is: $$\left|\int_\gamma f(z)\,dz\right| \leq \sup_{z \in |\gamma|} |f(z)| \cdot \len(\gamma).$$
+
+\theorem{Continuous Dependence on Vertices} $f : U \to \mathbb{C}$ is continuous. For $T$ a closed triangle lying in $U$, $\int_{\partial T} f(z)\,dz$ depends continuously on the vertices of $T$.
+
+\remark $F$ is a \term{primative} of the continuous function $f : U \to \mathbb{C}$ if $F^\prime(z) = f(z)$ in $U$.
+
+\remark $\int_{\gamma} f(z)\,dz = F(\gamma(1)) - F(\gamma(0))$.
+
+\theorem{Existence of Primitives} $f : U \to \mathbb{C}$, continuous, has a primitive in $U$ iff $\int_\gamma f(z)\, dz = 0$ for every closed curve in $U$.
+
+\end{topic}
+
+
+\begin{topic}{Cauchy's theory in a disk}
+
+\theorem{Primitives in Disks} $D \subseteq \mathbb{C}$ an open disk, $f : D \to \mathbb{C}$ continuous. If $\int_{\partial T} f(z)\,dz = 0$ for every closed triangle $T \subseteq D$ then $f$ has a primitive in $D$.
+
+\theorem{Goursat's Theorem} If $f \in \holo{U}$ then $\int_{\partial T} f(z)\,dz = 0$ for every closed triangle $T \subseteq U$.
+
+\theorem{Primitives in a Disk} If $D \subseteq \mathbb{C}$ is an open disk and $f \in \holo{D}$ then $f$ has a primitive in $D$.
+
+\theorem{Cauchy's Theorem in a Disk} If $D \subseteq \mathbb{C}$ is an open disk and $f \in \holo{D}$ then $\int_\gamma f(z)\,dz = 0$ for every closed curve $\gamma$ in $D$.
+
+\remark Cauchy's theorem remains true if $f$ is continuous in $D$ and holomorphic in $D \setminus \{p\}$ for some $p \in D$.
+
+\theorem{Cauchy's Integral Formula in a Disk} For $\disk{p}{r} \subseteq D \subseteq \mathbb{C}$, $D$ an open disk, and $f \in \holo{D}$: $$f(z) = \dfrac{1}{2\pi i}\int_{\sphere{p}{r}} \dfrac{f(\zeta)}{\zeta - z}\, d\zeta,~~z \in \disk{p}{r}.$$
+
+\theorem{Holomorphic Implies Complex Analytic} A holomorphic function is complex analytic. If $f \in \holo{U}$ and $\disk{p}{r} \subseteq U$ then $$f(z) = \sum_{n=0}^\infty a_n (z - p)^n,~~z \in \disk{p}{r};$$ $$a_n = \dfrac{f^{(n)}(p)}{n!} = \dfrac{1}{2\pi i}\int_{\sphere{p}{s}} \dfrac{f(\zeta)}{(\zeta - p)^{n+1}}\,d\zeta,~~0 < s < r.$$
+
+\corollary{Derivatives of All Orders} If $f \in \holo{U}$ then $f^\prime \in \holo{U}$ and so $f^{(k)} \in \holo{U}$ exists for all $k \geq 1$.
+
+\theorem{Morera's Theorem} If $f : U \to \mathbb{C}$ is continuous and $\int_{\partial T} f(z)\,d(z) = 0$ for every closed triangle $T \subseteq U$, then $f \in \holo{U}$.
+
+\remark If $U \subseteq \mathbb{C}$ is open and $L$ is a line. If $f$ is continuous in $U$ and $f \in \holo{U \setminus L}$ then $f \in \holo{U}$.
+
+\theorem{Cauchy's Estimates} If $f \in \holo{\disk{p}{r}}$ is continuous on $\cdisk{p}{r}$, then for $n \geq 0$: $$\left|f^{(n)}(p)\right| \leq \dfrac{n!}{r^n} \sup_{|z - p| = r} |f(z)|.$$
+
+\theorem{Ratio Bound} If $f$ is holomorphic taking $\disk{p}{r}$ into $\disk{q}{R}$, then $|f^\prime(p)| \leq R/r$.
+
+\theorem{Liouville's Theorem} Every bounded entire function is constant.
+
+\theorem{Differentiating Under the Integral} Let $U \subseteq \mathbb{C}$ be open and $\varphi : U \times [a, b] \to \mathbb{C}$ continuous such that for $t \in [a, b]$, $z \mapsto \varphi(z, t) \in \holo{U}$ with derivative $\varphi^\prime(z, t)$. Define $f : U \to \mathbb{C}$  by $$f(z) = \int_a^b \varphi(z, t)\,dt.$$ Then $f \in \holo{U}$ and $$f^\prime(z) = \int_a^b \varphi^\prime(z, y)\,dt,~~z \in U.$$ Inductively, $$f^{(n)}(z) = \int_a^b \varphi^{(n)}(z, t)\,dt,~~z \in U.$$
+
+\corollary{Differentiating Curve Integral} $\gamma$ a curve, $g : |\gamma| \to \mathbb{C}$ continuous. If $f : \mathbb{C} \setminus |\gamma| \to \mathbb{C}$ is defined as $$f(z) = \int_\gamma \dfrac{g(\zeta)}{(\zeta - z)^n}\,d\zeta,~~n \geq 1$$ then $f \in \holo{\mathbb{C} \setminus |\gamma|}$ and $$f^\prime(z) = n \int_\gamma \dfrac{g(\zeta)}{(\zeta - z)^{n+1}}\,d\zeta,~~z \in \mathbb{C} \setminus |\gamma|.$$
+
+\end{topic}
+
+
+\begin{topic}{Mapping Properties of Holomorphic Functions}
+
+\remark Let $f \in \holo{U}$ be not identically zero in $\disk{p}{r} \subseteq U$ with power series $f(z) = \sum_{n=0}^\infty a_n (z - p)^n$ there. The \term{order} of $f$ at $p$ is the index of the first non-zero $a_m$, denoted $\order(f, p)$. $\order(f, p) \geq 1$ iff $f(p) = 0$. $p$ is a \term{simple zero} of $f$ if $\order(f, p) = 1$. $\order(f, p)$ is the unique integer $m \geq 0$ such that $f(z) = (z - p)^m f_1(z)$ with $f_1 \in \holo{U}$ and $f_1(p) \neq 0$.
+
+\remark $U \subseteq \mathbb{C}$ is a \term{domain} if it is open, non-empty, and connected.
+
+\lemma{Accumulating Zero} $f \in \holo{U}$, $U$ a domain. If $f^{-1}(0)$ accumulates in $U$ then $f \equiv 0$ in $U$. Consequently, a non-constant holomorphic function on a domain has at most countably many zeroes, all of which are isolated.
+
+\theorem{Identity Theorem} If $f = g$ accumulates in $U$, a domain, with $f, g \in \holo{U}$ then $f = g$ in $U$.
+
+\lemma{Slope Continuity} If $f \in \holo{U}$ then the following $g : U \times U \to \mathbb{C}$ is continuous: $$\renewcommand{\arraystretch}{1.2}g(\zeta, z) =
+\begin{cases}
+\dfrac{f(\zeta) - f(z)}{\zeta - z}&\zeta \neq z\\
+f^\prime(z)&\zeta = z
+\end{cases}\renewcommand{\arraystretch}{1.0}$$
+
+\theorem{Holomorphic Inverse Function Theorem} Suppose $f \in \holo{U}$, $p \in U$, and $f^\prime(p) \neq 0$. Then there are open neighborhoods $V \subseteq U$ of $p$ and $W \subseteq \mathbb{C}$ of $f(p)$ such that $f : V \to W$ is a bijection such that $f^{-1} : W \to V$ is holomorphic and $$\left(f^{-1}\right)^\prime(w) = \dfrac{1}{f^\prime(f^{-1}(w))},~~w \in W.$$
+
+\remark $f : V \to W$ is a \term{biholomorphism} if $f$ is bijective and holomorphic with holomorphic inverse.
+
+\theorem{Local Normal Form} $f \in \holo{U}$ non-constant with $U$ a domain. For $p \in U$ there exists positive $m \in \mathbb{N}$ and neighborhoods $V \subseteq U$ of $p$ and $W \subseteq \mathbb{C}$ of $q = f(p)$ and biholomorphisms $\varphi : V \to \udisk$, $\psi : W \to \udisk$ such that $\varphi(p) = \psi(q) = 0$ and $(\psi \circ f \circ \varphi^{-1})(w) = w^m$ for $w \in \udisk$.
+
+\remark The $m$ in the Local Normal Form is the order of the zero at $p$ of $f - f(p)$ and is called the \term{local degree} of $f$ at $p$, denoted $\degree(f, p) = \order(f - f(p), p)$. $p$ is called a \term{critical point} when $\degree(f, p) > 1$ (i.e.\ $f^\prime(p) = 0$) with \term{critical value} $f(p)$.
+
+\theorem{Open Mapping Theorem} $f \in \holo{U}$ non-constant with $U$ a domain: then $f(U)$ is open in $\mathbb{C}$.
+
+\corollary{Critical Points \& Biholomorphisms} $f \in \holo{U}$ is injective in a domain $U$. Then $f$ has no critical points in $U$ and is biholomorphic with its image.
+
+\theorem{Maximum Principle for Open Maps} Suppose $f : U \to \mathbb{C}$ is open. Then $|f|$ does not attain a local maximum in $U$ and, if $f$ is non-vanishing in $U$, does not attain a local minimum.
+
+\theorem{Maximum Principle for Holomorphic Functions} Let $U \subseteq \mathbb{C}$ is a bounded domain and $f : \overline{U} \to \mathbb{C}$ is continuous and $f \in \holo{U}$. Then
+\begin{enumerate}
+\item[(i)] $|f(z)| \leq \sup_{\zeta \in \partial U} |f(\zeta)|$ for all $z \in U$;
+\item[(ii)] $|f(z)| \geq \inf_{\zeta \in \partial U} |f(\zeta)|$ for all $z \in U$ provided $f$ does not vanish in $U$.
+\end{enumerate}
+If in either case equality holds at some $z \in U$ then $f$ is constant.
+
+\end{topic}
+
+\newpage
+\section{Topological Aspects of Cauchy's Theory}
+
+\begin{topic}{Homotopy of Curves}
+
+\remark $\gamma : [a, b] \to X$, continuous, is a \term{curve} in a topological space $X$ with \term{initial point} $\gamma(a)$ and \term{end point} $\gamma(b)$, and it is \term{closed} if $\gamma(a) = \gamma(b)$. $|\gamma| = \{ \gamma(t) : t \in [a, b] \} \subseteq X$ is the \term{image}. A closed curve in $X$ can be identified with a continuous map of the circle into $X$.
+
+If $\gamma$ is a curve then $\gamma^-$ is the \term{reverse} of $\gamma$, and if $\eta$ is another curve starting where $\gamma$ ends, then $\gamma \cdot \eta$ is the \term{product} of $\gamma$ and $\eta$ and is formed by traversing $\gamma$ and then $\eta$. $\varepsilon_p$ is the \term{constant curve} at $p$.
+
+\remark A \term{homotopy} between $\gamma_0, \gamma_1$, curves in $X$ from $p$ to $q$ is a continuous map $H : [0, 1] \times [0, 1] \to X$ with:
+\begin{itemize}
+\item $H(t, 0) = \gamma_0(t)$ and $H(t, 1) = \gamma_1(t)$, $t \in [0, 1]$.
+\item $H(0, s) = p$ and $H(1, s) = q$, $s \in [0, 1]$.
+\end{itemize}
+When such a function exists, $\gamma_0$ and $\gamma_1$ are called \term{homotopic} in X, written $\gamma_0 \simeq \gamma_1$. $\gamma_0 \simeq \gamma_1$ if $\gamma_0$ can be continuously deformed {\em in $X$} to $\gamma_1$.
+
+\lemma{Homotopy of Compositions} $\gamma$ a curve in $X$, $\varphi : [0, 1] \to [0, 1]$ continuous.
+\begin{enumerate}
+\item[(i)] If $\varphi$ maps $0$ and $1$ to themselves then $\gamma \circ \varphi \simeq \gamma$.
+\item[(ii)] If $\varphi(0) = \varphi(1)$ then $\gamma \circ \varphi \simeq \varepsilon_p$, $p = (\gamma \circ \varphi)(0)$.
+\end{enumerate}
+
+\theorem{Homotopy is an Equivalence} Homotopy $\simeq$ is an equivalence relation on the set of curves with a given initial point and end point. Moreover:
+\begin{enumerate}
+\item[(i)] $\gamma \simeq \eta \iff \gamma^- \simeq \eta^-$.
+\item[(ii)] If $\gamma(1) = \eta(0)$ and $\gamma \simeq \hat\gamma, \eta \simeq \hat\eta$, then $\gamma \cdot \eta \simeq \hat\gamma \cdot \hat\eta$.
+\item[(iii)] If $p = \gamma(0)$ and $q = \gamma(1)$ then $\varepsilon_p \cdot \gamma \simeq \gamma \cdot \varepsilon_q \simeq \gamma$ and $\gamma \cdot \gamma^- \simeq \varepsilon_p$.
+\item[(iv)] If $\gamma(1) = \eta(0)$ and $\eta(1) = \xi(0)$ then $(\gamma \cdot \eta) \cdot \xi \simeq \gamma \cdot (\eta \cdot \xi)$.
+\end{enumerate}
+
+\remark The equivalence class of a curve $\gamma$ under $\simeq$ is called its \term{homotopy class} and is denoted $[\gamma]$. When $\gamma(1) = \eta(0)$ we have $[\gamma] \cdot [\eta] = [\gamma \cdot \eta]$ is well defined. For $p \in X$, the set of homotopy classes of closed curves starting at $p$ forms a group, called the \term{fundamental group} of $X$ with \term{base point} $p$, under the aforementioned product and is denoted by $\pi_1(X, p)$.
+
+\remark $f : X \to Y$ continuous. Then $f_\ast : \pi_1(X, p) \to \pi_1(Y, f(p))$ given by $f_\ast([\gamma]) = [f \circ \gamma]$ is a group homomorphism. If $g : Y \to Z$ is continuous, then $(g \circ f)_\ast = g_\ast \circ f_\ast$. If $f$ is a homeomorphism then $f_\ast$ is an isomorphism with inverse $(f^{-1})_\ast$--homeomorphic spaces have isomorphic fundamental groups.
+
+\remark $X$, path-connected, is \term{simply connected} if $\pi_1(X, p)$ is trivial for some (and hence every) $p \in X$. If every closed curve $\gamma$ from $p \in X$ is \term{null-homotopic}, i.e.\ $\gamma \simeq \varepsilon_p$, then $X$ is simply connected.
+
+\theorem{Homotopy of Curves in Simply Connected Spaces} A path-connected space $X$ is simply connected if and only if any two curves with the same initial and end points are homotopic.
+
+\remark $\gamma_0, \gamma_1$, closed curves in $X$, are \term{freely homotopic} in $X$ if there exists a continuous map $H : [0, 1] \times [0, 1] \to X$ with:
+\begin{itemize}
+\item $H(t, 0) = \gamma_0(t)$ and $H(t, 1) = \gamma_1$ for all $t \in [0, 1]$.
+\item $H(0, s) = H(1, s)$ for all $s \in [0, 1]$.
+\end{itemize}
+$\gamma_0$ is called \term{freely null-homotopic} in $X$ if $\gamma_1 = \varepsilon_p, p \in X$. Free homotopy is an equivalence relation.
+
+\end{topic}
+
+
+\begin{topic}{Covering properties of the exponential map}
+
+\remark $\exp(z) = \exp(\zeta) \iff z - \zeta = 2 k \pi i, k \in \mathbb{Z}$ and $\exp(\mathbb{C}) = \mathbb{C}^\ast = \mathbb{C} \setminus \{ 0 \}$.
+
+\remark For $w_0 \in \mathbb{C}^\ast$, $\exp^{-1}(w_0) = z_0 + 2 \pi i \mathbb{Z}$ where $z_0$ is {\em some} preimage of $w_0$.
+
+\remark Let $w_0 \in \mathbb{C}^\ast$ and select $z_0 \in \exp^{-1}(w_0)$, and set $z_k = z_0 + 2 \pi i k$. Then $w_0$ has a neighborhood $W$ that is \term{evenly covered} by $\exp$, that is $\exp^{-1}(W)$ is the disjoint union of open sets $O_k = O_0 + 2 \pi i k$ where $z_k \in O_k$ and $\exp : O_k \to W$ is a homeomorphism, yielding a \term{local inverse} of $\exp$, $L_k : W \to O_k$.
+
+\remark A \term{lift} (under $\exp$) of a continuous map $f : X \to \mathbb{C}^\ast$ is a continuous map $\tilde{f} : X \to \mathbb{C}$ satisfying $\exp(\tilde{f}) = f$. $\tilde{f}$ is also called a \term{branch of the logarithm of $f$}.
+
+\theorem{Uniqueness of Lifts} Any two lifts of a continuous map from a connected space $X$ to $\mathbb{C}^\ast$ differ by an integer multiple of $2 \pi i$.
+
+\theorem{Existence of Lifts from Unit Interval \& Square}
+\begin{enumerate}
+\item[(i)] Given a curve $\gamma : [0, 1] \to \mathbb{C}^\ast$ and $p \in \exp^{-1}(\gamma(0))$, there is a unique lift $\tilde{\gamma}$ of $\gamma$ with $\tilde{\gamma}(0) = p$.
+\item[(ii)] Given a continuous map $H : [0, 1] \times [0, 1] \to \mathbb{C}^\ast$ and $p \in \exp^{-1}(H(0, 0))$, there is a unique lift $\tilde{H}$ of $H$ with $\tilde{H}(0, 0) = p$.
+\end{enumerate}
+Part (i) is the \term{curve lifting property} of $\exp$.
+
+\lemma{Lebesgue's Cover Lemma} For an open cover $\{U_\alpha\}$, there exists a \term{Lebesgue number} $\delta > 0$ such that any set $E$ with $\diam E < \delta$ lies in some $U_\alpha$.
+
+\corollary{Lift End Points Corollary} Let $\gamma_0 \simeq \gamma_1$ with $p \in \mathbb{C}$ such that $\exp(p) = \gamma_i(0)$. Let $\tilde{\gamma_i}$ be the unique lift of $\gamma_i$ with $\tilde{\gamma_i}(0) = p$. Then $\tilde{\gamma_0}(1) = \tilde{\gamma_1}(1)$ and $\gamma_0$ is a null-homotopic closed curve if and only if $\tilde{\gamma}$ is a closed curve.
+
+\remark A space is \term{locally path-connected} if every neighborhood of every point contains a path-connected neighborhood of that point.
+
+\theorem{Existence of Lifts} Suppose $X$ is simply connected and locally path-connected and $f : X \to \mathbb{C}^\ast$ continuous. Then $f = \exp(g)$ for some continuous $g : X \to \mathbb{C}$ which unique up to addition of an integer multiple of $2 \pi i$.
+
+\corollary{Existence of Holomorphic Logarithms and n-th Roots} Suppose $U \subseteq \mathbb{C}$ is a simply connected domain on which $f \in \holo{C}$ does not vanish. Then:
+\begin{enumerate}
+\item[(i)] There is $g \in \holo{U}$, unique up to addition of an integer multiple of $2 \pi i$, with $f = \exp(g)$.
+\item[(ii)] For $n$ a positive integer, there is $h \in \holo{U}$, unique up to multiplication by an $n$-th root of unity, with $f = h^n$.
+\end{enumerate}
+
+\end{topic}
+
+
+\begin{topic}{The winding number}
+
+\remark All the lifting results of the previous section hold if we replace $\mathbb{C}^\ast$ and $z \mapsto \exp(z)$ by $\mathbb{C} \setminus \{p\}$ and $z \mapsto \exp(z) + p$, respectively.
+
+\remark $\gamma$ a curve with $p \not\in |\gamma|$ and $\tilde{\gamma}$ a lift of $\gamma$ under $z \mapsto \exp(z) + p$. The quantity $$W(\gamma, p) = \dfrac{1}{2 \pi i}\left(\tilde{\gamma}(1) - \tilde{\gamma}(0)\right)$$ is the \term{winding number} of $\gamma$ with respect to $p$. $W(\gamma, p) \in \mathbb{Z}$ if and only if $\gamma$ is closed.
+
+\theorem{Properties of the Winding Number} Let $\gamma$ be a curve with $p \not\in |\gamma|$, then:
+\begin{enumerate}
+\item[(i)] $W(\gamma, p) = W(\gamma + w, p + w)$ for all $w \in \mathbb{C}$.
+\item[(ii)] $W(\gamma^-, p) = -W(\gamma, p)$.
+\item[(iii)] If $\eta$ is a curve with $p \not\in \eta, \eta(0) = \gamma(1)$ then $W(\gamma \cdot \eta, p) = W(\gamma, p) + W(\eta, p)$.
+\item[(iv)] If $\eta \simeq \gamma$ (or freely homotopic closed curves) in $\mathbb{C} \setminus \{ p \}$ then $W(\gamma, p) = W(\eta, p)$.
+\end{enumerate}
+If $\gamma$ is closed, then
+\begin{enumerate}
+\item[(v)] $W(\gamma, p) = 0$ if and only if $\gamma$ is freely homotopic to a constant curve in $\mathbb{C} \setminus \{ p \}$.
+\item[(vi)] $W(\gamma, z)$ is constant on the components of $\mathbb{C} \setminus |\gamma|$ and $0$ on the unbounded region.
+\end{enumerate}
+
+\remark The \term{jump principle}: each time $|\gamma|$ is crossed from right to left, the winding number increments.
+
+\remark A closed curve is a \term{Jordan curve} (or \term{simple closed curve}) if it is injective on $[0, 1)$. If $\gamma$ is a Jordan curve, then the \term{Jordan Curve Theorem} says $\mathbb{C} \setminus |\gamma|$ has two components: a bounded \term{interior} and unbounded \term{exterior}, denoted $\interior(\gamma)$ and $\exterior(\gamma)$, respectively. $|\gamma| = \partial \interior(\gamma) = \partial \exterior(\gamma)$.
+
+\theorem{Winding Number for Jordan Curves} If $\gamma$ is a Jordan curve, then $W(\gamma, \cdot)$ vanishes on $\exterior(\gamma)$ and is $\pm 1$ on $\interior(\gamma)$. $\gamma$ is \term{positively} or \term{negatively oriented} according to the sign of $W(\gamma, \cdot)$ inside $\interior(\gamma)$.
+
+\theorem{Analytic Description of the Winding Number} Let $\gamma$ be a piecewise $C^1$ curve, $p \not\in |\gamma|$. Then $$W(\gamma, p) = \dfrac{1}{2 \pi i} \int_{\gamma} \dfrac{dz}{z - p}.$$
+
+\end{topic}
+
+
+\begin{topic}{Cycles and homology}
+
+\remark The \term{free abelian group generated by $S$} is the collection of functions $\varphi : S \to \mathbb{Z}$ with $\varphi$ non-zero finitely often. $\varphi = n_1 \varphi_{x_1} + \cdots + n_m \varphi_{x_m}$ where $\varphi$ vanishes outside $\{x_1, \ldots, x_m\}$ and $n_k = \varphi(x_k)$, and $\varphi_x$ sends $x$ to $1$ and vanishes elsewhere. Such representations are unique, and identifying $\varphi_x$ with $x$ we get $\varphi = n_1 x_1 + \cdots + n_m x_m$.
+
+\remark Let $U \subseteq \mathbb{C}$ be non-empty and open. 
+
+\end{topic}
+
+\end{document}

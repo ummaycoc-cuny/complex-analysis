@@ -48,6 +48,7 @@ Graduate Center, CUNY\\
 \newcommand{\disk}[2]{\mathbb{D}(#1, #2)}
 \newcommand{\cdisk}[2]{\overline{\mathbb{D}}(#1, #2)}
 \newcommand{\sphere}[2]{\mathbb{T}{(#1, #2)}}
+\newcommand{\curveproduct}{\boldsymbol{\cdot}}
 
 \begin{document}
 
@@ -129,11 +130,11 @@ In this case, $f^\prime = f_z = f_x = -if_y$.
 
 \remark $U \subseteq \mathbb{C}$ non-empty and open; $\gamma : [a, b] \to U$, continuous, is a \term{curve} in $U$ with \term{initial point} $\gamma(a)$ and \term{end point} $\gamma(b)$, and it is \term{closed} if $\gamma(a) = \gamma(b)$. $|\gamma| = \{ \gamma(t) : t \in [a, b] \} \subseteq \mathbb{C}$ is the \term{image}. $\gamma$ is \term{piecewise $C^1$} if there is $a = t_0 < t_1 < \cdots < t_n = b$ with $\gamma$ continuously differentiable on $(t_{k-1}, t_k)$ and $\lim_{t \to t_{k-1}^+} \gamma^\prime(t)$ and $\lim_{t \to t_k^-} \gamma^\prime(t)$ exist.
 
-If $\gamma$ is a curve then $\gamma^-$ is the \term{reverse} of $\gamma$, and if $\eta$ is another curve starting where $\gamma$ ends, then $\gamma \cdot \eta$ is the \term{product} of $\gamma$ and $\eta$ and is formed by traversing $\gamma$ and then $\eta$.
+If $\gamma$ is a curve then $\gamma^-$ is the \term{reverse} of $\gamma$, and if $\eta$ is another curve starting where $\gamma$ ends, then $\gamma \curveproduct \eta$ is the \term{product} of $\gamma$ and $\eta$ and is formed by traversing $\gamma$ and then $\eta$.
 
 \remark Throughout the section, it will be assumed that all curves are piecewise $C^1$.
 
-\remark $\gamma : [a, b] \to \mathbb{C}$ a curve, $f : |\gamma| \to \mathbb{C}$ continuous. The \term{integral of $f$ along $\gamma$} is $$\int_\gamma f(z)\,dz = \int_a^b f(\gamma(t)) \gamma^\prime(t)\,dt$$ where $\gamma^\prime = d\gamma/dt$ is defined at all but finitely any points in $[a, b]$, and is invariant under orientation preserving reparameterizations. Note that $$\int_\gamma f(z)\,dz = - \int_{\gamma^-} f(z)\,dz, \hskip 0.5cm \int_{\gamma \cdot \eta} f(z)\,dz = \int_\gamma f(z)\,dz + \int_\eta f(z)\,dz.$$ For $f = u + iv$ and $\gamma(t) = x(t) + iy(t)$, $$\int_\gamma f(z)\,dz = \int_\gamma (u\,dx - v\,dy) + i \int_\gamma (v\,dx + u\,dy).$$
+\remark $\gamma : [a, b] \to \mathbb{C}$ a curve, $f : |\gamma| \to \mathbb{C}$ continuous. The \term{integral of $f$ along $\gamma$} is $$\int_\gamma f(z)\,dz = \int_a^b f(\gamma(t)) \gamma^\prime(t)\,dt$$ where $\gamma^\prime = d\gamma/dt$ is defined at all but finitely any points in $[a, b]$, and is invariant under orientation preserving reparameterizations. Note that $$\int_\gamma f(z)\,dz = - \int_{\gamma^-} f(z)\,dz, \hskip 0.5cm \int_{\gamma \curveproduct \eta} f(z)\,dz = \int_\gamma f(z)\,dz + \int_\eta f(z)\,dz.$$ For $f = u + iv$ and $\gamma(t) = x(t) + iy(t)$, $$\int_\gamma f(z)\,dz = \int_\gamma (u\,dx - v\,dy) + i \int_\gamma (v\,dx + u\,dy).$$
 
 \remark The \term{length} of a curve $\gamma$ is $\int_\gamma |dz| = \int_0^1 |\gamma^\prime(t)|\,dt$, denoted $\len(\gamma)$.
 
@@ -231,7 +232,7 @@ If in either case equality holds at some $z \in U$ then $f$ is constant.
 
 \remark $\gamma : [a, b] \to X$, continuous, is a \term{curve} in a topological space $X$ with \term{initial point} $\gamma(a)$ and \term{end point} $\gamma(b)$, and it is \term{closed} if $\gamma(a) = \gamma(b)$. $|\gamma| = \{ \gamma(t) : t \in [a, b] \} \subseteq X$ is the \term{image}. A closed curve in $X$ can be identified with a continuous map of the circle into $X$.
 
-If $\gamma$ is a curve then $\gamma^-$ is the \term{reverse} of $\gamma$, and if $\eta$ is another curve starting where $\gamma$ ends, then $\gamma \cdot \eta$ is the \term{product} of $\gamma$ and $\eta$ and is formed by traversing $\gamma$ and then $\eta$. $\varepsilon_p$ is the \term{constant curve} at $p$.
+If $\gamma$ is a curve then $\gamma^-$ is the \term{reverse} of $\gamma$, and if $\eta$ is another curve starting where $\gamma$ ends, then $\gamma \curveproduct \eta$ is the \term{product} of $\gamma$ and $\eta$ and is formed by traversing $\gamma$ and then $\eta$. $\varepsilon_p$ is the \term{constant curve} at $p$.
 
 \remark A \term{homotopy} between $\gamma_0, \gamma_1$, curves in $X$ from $p$ to $q$ is a continuous map $H : [0, 1] \times [0, 1] \to X$ with:
 \begin{itemize}
@@ -249,12 +250,12 @@ When such a function exists, $\gamma_0$ and $\gamma_1$ are called \term{homotopi
 \theorem{Homotopy is an Equivalence} Homotopy $\simeq$ is an equivalence relation on the set of curves with a given initial point and end point. Moreover:
 \begin{enumerate}
 \item[(i)] $\gamma \simeq \eta \iff \gamma^- \simeq \eta^-$.
-\item[(ii)] If $\gamma(1) = \eta(0)$ and $\gamma \simeq \hat\gamma, \eta \simeq \hat\eta$, then $\gamma \cdot \eta \simeq \hat\gamma \cdot \hat\eta$.
-\item[(iii)] If $p = \gamma(0)$ and $q = \gamma(1)$ then $\varepsilon_p \cdot \gamma \simeq \gamma \cdot \varepsilon_q \simeq \gamma$ and $\gamma \cdot \gamma^- \simeq \varepsilon_p$.
-\item[(iv)] If $\gamma(1) = \eta(0)$ and $\eta(1) = \xi(0)$ then $(\gamma \cdot \eta) \cdot \xi \simeq \gamma \cdot (\eta \cdot \xi)$.
+\item[(ii)] If $\gamma(1) = \eta(0)$ and $\gamma \simeq \hat\gamma, \eta \simeq \hat\eta$, then $\gamma \curveproduct \eta \simeq \hat\gamma \curveproduct \hat\eta$.
+\item[(iii)] If $p = \gamma(0)$ and $q = \gamma(1)$ then $\varepsilon_p \curveproduct \gamma \simeq \gamma \curveproduct \varepsilon_q \simeq \gamma$ and $\gamma \curveproduct \gamma^- \simeq \varepsilon_p$.
+\item[(iv)] If $\gamma(1) = \eta(0)$ and $\eta(1) = \xi(0)$ then $(\gamma \curveproduct \eta) \curveproduct \xi \simeq \gamma \curveproduct (\eta \curveproduct \xi)$.
 \end{enumerate}
 
-\remark The equivalence class of a curve $\gamma$ under $\simeq$ is called its \term{homotopy class} and is denoted $[\gamma]$. When $\gamma(1) = \eta(0)$ we have $[\gamma] \cdot [\eta] = [\gamma \cdot \eta]$ is well defined. For $p \in X$, the set of homotopy classes of closed curves starting at $p$ forms a group, called the \term{fundamental group} of $X$ with \term{base point} $p$, under the aforementioned product and is denoted by $\pi_1(X, p)$.
+\remark The equivalence class of a curve $\gamma$ under $\simeq$ is called its \term{homotopy class} and is denoted $[\gamma]$. When $\gamma(1) = \eta(0)$ we have $[\gamma] \curveproduct [\eta] = [\gamma \curveproduct \eta]$ is well defined. For $p \in X$, the set of homotopy classes of closed curves starting at $p$ forms a group, called the \term{fundamental group} of $X$ with \term{base point} $p$, under the aforementioned product and is denoted by $\pi_1(X, p)$.
 
 \remark $f : X \to Y$ continuous. Then $f_\ast : \pi_1(X, p) \to \pi_1(Y, f(p))$ given by $f_\ast([\gamma]) = [f \circ \gamma]$ is a group homomorphism. If $g : Y \to Z$ is continuous, then $(g \circ f)_\ast = g_\ast \circ f_\ast$. If $f$ is a homeomorphism then $f_\ast$ is an isomorphism with inverse $(f^{-1})_\ast$--homeomorphic spaces have isomorphic fundamental groups.
 
@@ -318,7 +319,7 @@ Part (i) is the \term{curve lifting property} of $\exp$.
 \begin{enumerate}
 \item[(i)] $W(\gamma, p) = W(\gamma + w, p + w)$ for all $w \in \mathbb{C}$.
 \item[(ii)] $W(\gamma^-, p) = -W(\gamma, p)$.
-\item[(iii)] If $\eta$ is a curve with $p \not\in \eta, \eta(0) = \gamma(1)$ then $W(\gamma \cdot \eta, p) = W(\gamma, p) + W(\eta, p)$.
+\item[(iii)] If $\eta$ is a curve with $p \not\in \eta, \eta(0) = \gamma(1)$ then $W(\gamma \curveproduct \eta, p) = W(\gamma, p) + W(\eta, p)$.
 \item[(iv)] If $\eta \simeq \gamma$ (or freely homotopic closed curves) in $\mathbb{C} \setminus \{ p \}$ then $W(\gamma, p) = W(\eta, p)$.
 \end{enumerate}
 If $\gamma$ is closed, then
@@ -342,8 +343,71 @@ If $\gamma$ is closed, then
 
 \remark The \term{free abelian group generated by $S$} is the collection $\mathcal{G}(S)$ of functions $\varphi : S \to \mathbb{Z}$ with $\varphi$ non-zero finitely often. Let $\varphi_x$ be the characteristic function on $\{x\}$. Then for $\varphi \in \mathcal{G}(S)$ vanishing outside $\{x_1, \ldots, x_m\}$ with $n_k = \varphi(x_k)$ we have $\varphi = n_1 \varphi_{x_1} + \cdots n_m \varphi_{x_m}$. Such representations are unique, and identifying $\varphi_x$ with $x$ we get $\varphi = n_1 x_1 + \cdots + n_m x_m$.
 
-\remark Let $U \subseteq \mathbb{C}$ be non-empty and open. A \term{chain} in $U$ is an element of the free abelian group generated by curves in $U$, e.g.\ a formal sum $$\gamma = n_1 \gamma_1 + \cdots + n_m \gamma_m$$ with $n_k \in \mathbb{Z}$ and $\gamma_k$ a curve in $U$. $n_k$ is the \term{multiplicity} of $\gamma_k$ and $$|\gamma| = |\gamma_1| \cup \cdots \cup |\gamma_m|$$ is the \term{image} of $\gamma$. A chain is a \term{cycle} if every $p \in U$ is an initial point and end point an equal number of times, counting multiplicity; e.g. $$\sum_{\{k:\gamma_k(0)=p\}} n_k = \sum_{\{k:\gamma_k(1)=p\}} n_k.$$
+\remark Let $U \subseteq \mathbb{C}$ be non-empty and open. A \term{chain} in $U$ is an element of the free abelian group generated by curves in $U$, e.g.\ a formal sum $$\gamma = n_1 \gamma_1 + \cdots + n_m \gamma_m$$ with $n_k \in \mathbb{Z}$ and $\gamma_k$ a curve in $U$. $n_k$ is the \term{multiplicity} of $\gamma_k$ and $$|\gamma| = |\gamma_1| \cup \cdots \cup |\gamma_m|$$ is the \term{image} of $\gamma$.
+
+\remark If $U_\gamma$ is the set of curves in $U$, then the \term{boundary map} $\partial : \mathcal{G}(U_\gamma) \to \mathcal{G}(U)$ is the group homomorphism:
+$$\sum_{k=1}^m n_k \gamma_k \mapsto \sum_{k=1}^m n_k \gamma_k(1) - \sum_{k=1}^m n_k \gamma_k(0).$$
+
+\remark A chain is a \term{cycle} if every $p \in U$ is an initial point and end point an equal number of times, counting multiplicity; e.g. $$\sum_{\{k:\gamma_k(0)=p\}} n_k = \sum_{\{k:\gamma_k(1)=p\}} n_k.$$ A chain $\gamma$ is a cycle if and only if $\partial\gamma = 0$. Since $\partial$ is a group homomorphism, the cycles of $U$ are the kernel of the boundary map of $U$ and are thus an additive group.
+
+\theorem{Cycles decompose into closed curves} If $\gamma = \sum_{k=1}^m n_k \gamma_k$ is a cycle, then collecting $|n_k|$ copies of either $\gamma_k$ or, when $n_k < 0$, $\gamma_k^-$, the curves can be partitioned into subcollections each of whose product can be arranged to be a closed curve.
+
+\remark The \term{winding number} extends to chains. If $\gamma = \sum_{k=1}^m n_k \gamma_k$ and $p \not\in |\gamma|$ then $$W(\gamma, p) = \sum_{k=1}^m n_k W(\gamma_k, p).$$
+
+\theorem{Winding numbers of chains and cycles} \begin{enumerate}
+\item[(i)] For any chain $\gamma$, $W(-\gamma, p) = -W(\gamma, p)$.
+\item[(ii)] For any two chains $\gamma$ and $\eta$, $W(\gamma + \eta, p) = W(\gamma, p) + W(\eta, p)$.
+\item[(iii)] If $\gamma$ is a cycle then $W(\gamma, \cdot)$'s range is $\mathbb{Z}$, is constant on the connected components of its domain, vanishing on the unbounded component.
+\end{enumerate}
+
+\remark Let $U \subseteq \mathbb{C}$ be non-empty and open. A cycle $\gamma$ is \term{null-homologous}, $\gamma \sim 0$, if $W(\gamma, \cdot) \equiv 0$ on $\mathbb{C} \setminus U$.
+
+\remark Two cycles $\gamma, \eta$ in $U$ are \term{homologous} if $\gamma - \eta \sim 0$, i.e.\ $W(\gamma, \cdot) = W(\eta, \cdot)$ on $\mathbb{C} \setminus U$.
+
+\remark $\sim$ is an equivalence relation. The equivalency class of a cycle $\gamma$ under $\sim$, denoted by $\langle \gamma \rangle$, is called the \term{homology class} of $\gamma$. $\langle \gamma \rangle + \langle \eta \rangle = \langle \gamma + \eta \rangle$ is well-defined. The set of homology classes in $U$ is an abelian group called the \term{first homology group} of $U$, denoted by $H_1(U)$.
+
+\remark $H_1(U)$ is the quotient group of all cycles in $U$ by the all the null-homologous cycles in $U$.
+
+\theorem{Homotopic implies homologous} \begin{enumerate}
+\item[(i)] If $\gamma \simeq \eta$ in $U$ then $\gamma \sim \eta$ in $U$.
+\item[(ii)] If $\gamma$ and $\eta$ are freely homotopic in $U$ then $\gamma \sim \eta$ in $U$.
+\end{enumerate}
+
+\remark This implies that $\varphi : \pi_1(U, p) \to H_1(U)$ defined by sending $\gamma$'s homotopy class to its homology class is well-defined.
+
+\lemma{Homology class of a closed product} Suppose $\gamma_1 \curveproduct \gamma_2 \curveproduct \cdots \curveproduct \gamma_n$ is a closed curve. Then, in $U$, $$\gamma_1 \curveproduct \gamma_2 \curveproduct \cdots \curveproduct \gamma_n ~ \gamma_1 + \gamma_2 + \cdots + \gamma_n.$$
+
+\remark This implies that $\varphi$ in the above remark is a group homomorphism. Since $H_1(U)$ is abelian, $\varphi$ must vanish on the commutator $C$ of $\pi_1(U, p)$, inducing a homomorphism $\Phi : \pi_1(U, p)/C \to H_1(U)$. Poincar\'{e} and Hurewicz showed $\Phi$ is an isomorphism.
+
+\corollary{Homology group of simply connected domains} Every cycle in a simply connected domain $U$ is null homologous, and so $H_1(U) = 0$ 
 
 \end{topic}
+
+
+\begin{topic}{The homology version of Cauchy's theorem}
+
+\remark Let $\gamma = \sum_{k=1}^m n_k \gamma_k$ be a chain, each $\gamma_k$ piecewise $C^1$, and let $f : |\gamma| \to \mathbb{C}$ be continuous. Then define $$\int_\gamma f(z)\,dz = \sum_{k=1}^m n_k \int_{\gamma_k} f(z)\,dz.$$
+
+\remark Observe the special case of $f(z) = 1/(z-p)$, $p \not\in |\gamma|$ gives $$\dfrac{1}{2 \pi i} \int_\gamma \dfrac{dz}{z - p} = \sum_{k=1}^m n_k W(\gamma_k, p) = W(\gamma, p).$$
+
+\theorem{Homology version of Cauchy's theorem} Let $U \subseteq \mathbb{C}$ be open and $\gamma$ a piecewise $C^1$ null-homologous cycle in $U$. For $f \in \holo{U}$: $$\int_\gamma f(z)\,dz = 0,$$ $$f(z) \cdot W(\gamma, z) = \dfrac{1}{2 \pi i} \int_\gamma \dfrac{f(\zeta)}{\zeta - z}\,d\zeta,~~z \in U \setminus |\gamma|.$$
+
+\corollary{Cauchy's theorem in simple connected domains} The above equations hold for all piecewise $C^1$ cycles in a simply connected domain.
+
+\corollary{Integration independent of homotopic curves / homologous cycles} If $\gamma \simeq \eta$ or $\gamma \sim \eta$ (and are piecewise $C^1$) then $$\int_\gamma f(z)\,dz = \int_\eta f(z)\,dz.$$
+
+\theorem{Primitives in simply connected domains} Every holomorphic function in a simply connected domain has a primitive.
+
+\corollary{Cauchy's integral formula for higher derivatives} For $f \in \holo{U}$, $\gamma \sim 0$ in $U$, and $n \geq 1$: $$f^{(n)}(z) \cdot W(\gamma, z) = \dfrac{n!}{2 \pi i} \int_\gamma \dfrac{f(\zeta)}{(\zeta - z)^{n+1}}\,d\zeta~~z \in U \setminus |\gamma|.$$
+
+\remark If $\gamma$ is not piecewise $C^1$ or rectifiable, there is a piecewise $C^1$ curve, $\eta$ it is homotopic to. If $f \in \holo{U}$ then define $\int_\gamma f(z)\,dz$ to be $\int_\eta f(z)\,dz$ which by the above statements is independent of the choice of $\eta$. Extending to cycles by linearity we can always assume paths of integration are piecewise $C^1$.
+
+\end{topic}
+
+%\newpage
+%\section{Meromorphic Functions}
+
+%\begin{topic}{Isolated singularities}
+%\end{topic}
 
 \end{document}

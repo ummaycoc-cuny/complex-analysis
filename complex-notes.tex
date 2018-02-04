@@ -39,12 +39,12 @@ Graduate Center, CUNY\\
 \newcommand{\corollary}[1]{\item {\bf #1.}}
 \newcommand{\lemma}[1]{\item {\bf #1.}}
 \newcommand{\proposition}[1]{\item {\bf #1.}}
-\newcommand{\definition}[1]{\item}
 \newcommand{\term}[1]{{\bf #1}}
 \newcommand{\holo}[1]{\mathcal{O}(#1)}
 \newcommand{\remark}{\item}
 \newcommand{\entire}{\holo{\mathbb{C}}}
 \newcommand{\udisk}{\mathbb{D}}
+\newcommand{\pdisk}[2]{\mathbb{D}^\ast(#1, #2)}
 \newcommand{\disk}[2]{\mathbb{D}(#1, #2)}
 \newcommand{\cdisk}[2]{\overline{\mathbb{D}}(#1, #2)}
 \newcommand{\sphere}[2]{\mathbb{T}{(#1, #2)}}
@@ -69,7 +69,7 @@ Graduate Center, CUNY\\
 
 \begin{topic}{What is a holomorphic function?}
 
-\definition{Complex Differentiable} $f$ defined near $p \in \mathbb{C}$ and complex valued, is \term{complex differentiable} at $p$ if $$f^\prime(p) = \lim_{z \to p} \dfrac{f(z) - f(p)}{z - p}$$ exists. $f^\prime(p)$ and call it the \term{complex derivative} of $f$ at $p$.
+\remark $f$ defined near $p \in \mathbb{C}$ and complex valued, is \term{complex differentiable} at $p$ if $$f^\prime(p) = \lim_{z \to p} \dfrac{f(z) - f(p)}{z - p}$$ exists. $f^\prime(p)$ and call it the \term{complex derivative} of $f$ at $p$.
 
 \remark Differentiability implies continuity.
 
@@ -404,10 +404,37 @@ $$\sum_{k=1}^m n_k \gamma_k \mapsto \sum_{k=1}^m n_k \gamma_k(1) - \sum_{k=1}^m 
 
 \end{topic}
 
-%\newpage
-%\section{Meromorphic Functions}
+\newpage
+\section{Meromorphic Functions}
 
-%\begin{topic}{Isolated singularities}
-%\end{topic}
+\begin{topic}{Isolated singularities}
+
+\remark $p$ is an \term{isolated singularity} of $f$ if there is an open neighborhood $U$ of $p$ such that $f \in \holo{U \setminus \{p\}}$. $p$ is a \term{removable singularity} if there exists $g \in \holo{U}$ such that $g(z) = f(z)$ for $z \in U \setminus \{p\}$.
+
+\theorem{Riemann's removable singularity theorem} If a holomorphic function is bounded in a punctured neighborhood of a isolated singularity, then the singularity is removable.
+
+\remark Boundedness can be replaced by $\lim_{z \to p}f(z) = 0$ in the above.
+
+\theorem{Classification of isolated singularities} An isolated singularity $p$ of $f$, holomorphic, is one of: \begin{itemize}
+\item[(i)] Removable for which $\lim_{z \to p} f(z)$ exists.
+\item[(ii)] A \term{pole} for which $\lim_{z \to p} f(z) = \infty$. In this case there is a positive integer $m$ such that $f_1(z) = (z - p)^m f(z)$ has a removable singularity at $p$ and $f_1(p) \neq 0$.
+\item[(iii)] An \term{essential singularity} for which $\lim_{z \to p}$ does not exist. In this case, for every small $r > 0$, $f(\pdisk{p}{r})$ is dense in $\mathbb{C}$.
+\end{itemize}
+
+\remark The density statement in (iii) is the Casorati-Weierstrass theorem. Picard showed that at most one value of $\mathbb{C}$ is missed.
+
+\remark If $f$ has a pole at $p$, then the $m$ in the classification theorem is the \term{order} of $f$ at $p$, denoted $\order(f, p)$.
+
+\remark If $\order(f, p) = 1$ then $p$ is a \term{simple pole}.
+
+\remark If $m = \order(f, p)$ then $$f(z) = \sum_{n=0}^\infty b_n (z - p)^{n - m}$$ in a punctured neighborhood about $p$. The \term{principle part} of $f$ at $p$ is the rational function $$\dfrac{b_0}{(z - p)^m} + \cdots + \dfrac{b_{m-1}}{z-p}.$$
+
+\remark The principle part of $f$ at $p$ is the unique polynomial $P$ in $(z-p)^{-1}$ with $P(0) = 0$ such that $f(z) - P((z-p)^{-1})$ has a removable singularity at $p$.
+
+\remark The principle part of $f$ at $p$ is the unique rational function $R$ with a single pole, $p$, such that $\lim_{z \to \infty} R(z) = 0$ and $f(z) - R(z)$ has a removable singularity at $p$.
+
+\remark If $f$ has order $m$ at $p$ then $f$ is locally $m$-to-$1$ near $p$ (consider $1/f$'s zeroes). The the \term{degree} of $f$ at a pole $p$ is equal to $\order(f, p)$, denoted $\degree(f, p)$.
+
+\end{topic}
 
 \end{document}

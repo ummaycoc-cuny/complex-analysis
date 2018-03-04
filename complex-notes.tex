@@ -70,7 +70,7 @@ Graduate Center, CUNY\\
 
 \begin{topic}{What is a holomorphic function?}
 
-\remark $f$ defined near $p \in \mathbb{C}$ and complex valued, is \term{complex differentiable} at $p$ if $$f^\prime(p) = \lim_{z \to p} \dfrac{f(z) - f(p)}{z - p}$$ exists. $f^\prime(p)$ and call it the \term{complex derivative} of $f$ at $p$.
+\remark $f$ defined near $p \in \mathbb{C}$ and complex valued, is \term{complex differentiable} at $p$ if $$f^\prime(p) = \lim_{z \to p} \dfrac{f(z) - f(p)}{z - p}$$ exists. $f^\prime(p)$ is called the \term{complex derivative} of $f$ at $p$.
 
 \remark Differentiability implies continuity.
 
@@ -78,19 +78,20 @@ Graduate Center, CUNY\\
 \begin{itemize}
 \item $(f + g)^\prime(p) = f^\prime(p) + g^\prime(p)$
 \item $(fg)^\prime(p) = f^\prime(p)g(p) + f(p)g^\prime(p)$,
-\item If $g(p) \neq 0$ then $\left(\frac{f}{g}\right)^\prime(p) = \frac{f^\prime(p)g(p) - f(p)g^\prime(p)}{(g(p))^2}$
+\item If $g(p) \neq 0$ then $$\left(\frac{f}{g}\right)^\prime(p) = \dfrac{f^\prime(p)g(p) - f(p)g^\prime(p)}{(g(p))^2}$$
 \end{itemize}
 If $g^\prime(p)$ and $f^\prime(g(p))$ exist, then $(f \circ g)^\prime(p) = f^\prime(g(p)) g^\prime(p)$.
 
-\remark $z = x + iy \mapsto (x, y)$ gives canonical isomorphism $\mathbb{C} \to \mathbb{R}^2$.\\
-$f = u + iv$ can be identified with $f(x, y) = (u(x, y), v(x, y))$ -- i.e. $f : \mathbb{C} \to \mathbb{C}$ vs $f : \mathbb{R}^2 \to \mathbb{R}^2$.
+\remark $z = x + iy \mapsto (x, y)$ gives the canonical isomorphism $\mathbb{C} \to \mathbb{R}^2$.
+
+\remark $f = u + iv$ can be identified with $f(x, y) = (u(x, y), v(x, y))$ -- i.e. $f : \mathbb{C} \to \mathbb{C}$ vs $f : \mathbb{R}^2 \to \mathbb{R}^2$.
 $$f_x = u_x + i v_x, \hskip 0.3cm f_y = u_y + i v_y$$
 
 \remark {\em New} partial operators: 
-$$f_z = \frac{1}{2}\left(f_x - i f_y\right), \hskip 0.3cm f_{\overline{z}} = \frac{1}{2}\left(f_x - i f_y\right)$$
+$$f_z = \frac{1}{2}\left(f_x - i f_y\right), \hskip 0.3cm f_{\overline{z}} = \frac{1}{2}\left(f_x + i f_y\right)$$
 $$f_x = f_z + f_{\overline{z}}, \hskip 0.3cm f_y = i(f_z - f_{\overline{z}})$$
 
-\theorem{Conditions for Differentiability} $f$ defined near $p \in \mathbb{C}$. Following are equivalent:
+\theorem{Conditions for Differentiability} For $f$ defined near $p \in \mathbb{C}$, the following are equivalent:
 \begin{itemize}
 \item Complex derivative $f^\prime(p)$ exists.
 \item Real derivative $Df(p)$ exists and $f_{\overline{z}} = 0$.
@@ -98,11 +99,11 @@ $$f_x = f_z + f_{\overline{z}}, \hskip 0.3cm f_y = i(f_z - f_{\overline{z}})$$
 \end{itemize}
 In such cases $f^\prime(p) = f_z(p) = f_x(p) = -i f_y(p)$.
 
-\remark An angle preserving linear transformation is called \term{conformal}.
+\remark An angle preserving linear transformation is called \term{conformal} (shapes preserved, not scales).
 
-\corollary{Conformality of Derivative} $f^\prime(p)$ exists and is non-zero. Then $Df(p) : \mathbb{R}^2 \to \mathbb{R}^2$ is an orientation preserving conformal linear transformation.
+\corollary{Conformality of Derivative} Suppose $f^\prime(p) \neq 0$ exists. Then $Df(p) : \mathbb{R}^2 \to \mathbb{R}^2$ is an orientation preserving conformal linear transformation.
 
-\remark $U \subseteq \mathbb{C}$ non-empty and open, $f : U \to \mathbb{C}$ is \term{holomorphic} in $U$, written $f \in \holo{U}$, if $f^\prime(p)$ exists $\forall p \in U$. Elements of $\entire{}$ are called \term{entire}. $\holo{U}$ is closed under sums, products, and composition. Pointwise addition and multiplication makes $\holo{U}$ a commutative ring with identity.
+\remark For $U \subseteq \mathbb{C}$ non-empty and open, $f : U \to \mathbb{C}$ is \term{holomorphic} in $U$, written $f \in \holo{U}$, if $f^\prime(p)$ exists $\forall p \in U$. Elements of $\entire{}$ are called \term{entire}. $\holo{U}$ is closed under sums, products, and composition. Pointwise addition and multiplication makes $\holo{U}$ a commutative ring with identity.
 
 \theorem{Conditions for Being Holomorphic} Suppose $f = u + iv$, defined on $U$, is real differentiable. Then $f \in \holo{U}$ exactly when the following equivalent conditions hold throughout $U$:
 \begin{enumerate}
@@ -120,28 +121,28 @@ In this case, $f^\prime = f_z = f_x = -if_y$.
 
 \theorem{Radius of Convergence} The radius of convergence for $\sum_{n=0}^\infty a_n (z - p)^n$ is $$R = \dfrac{1}{\limsup_{n \to \infty} \sqrt[n]{|a_n|}} \in [0, +\infty].$$ The series converges absolutely and uniformly inside $\disk{p}{r}$, $r < R$, and diverges for $z$ with $|z - p| > R$.
 
-\remark $U \subseteq \mathbb{C}$ non-empty and open, $f : U \to \mathbb{C}$ is \term{complex analytic} if when $\disk{p}{r} \subseteq U$ there is a power series $\sum_{n=0}^\infty a_n (z - p)^n$ converging to $f(z)$ whenever $z \in \disk{p}{r}$.
+\remark For $U \subseteq \mathbb{C}$ non-empty and open, $f : U \to \mathbb{C}$ is \term{complex analytic} if, whenever $\disk{p}{r} \subseteq U$, there is a power series $\sum_{n=0}^\infty a_n (z - p)^n$ converging to $f(z)$ whenever $z \in \disk{p}{r}$.
 
-\theorem{Analytic Implies Holomorphic} A complex analytic function has derivatives of all orders, each of which is complex analytic and can be found via term-by-term differentiation. The coefficients of a complex analytic function's power series are independent of the radius of disk under consideration: $a_n = f^{(n)}(p) / n!$, $n \geq 0$ ($p$ center of disk under consideration).
+\theorem{Analytic Implies Holomorphic} A complex analytic function has derivatives of all orders, each of which is complex analytic and can be found via term-by-term differentiation. The coefficients of a complex analytic function's power series are independent of the radius of disk under consideration: $a_n = f^{(n)}(p) / n!$, $n \geq 0$ ($p$ the center of the disk under consideration).
 
 \end{topic}
 
 
 \begin{topic}{Complex integration}
 
-\remark $U \subseteq \mathbb{C}$ non-empty and open; $\gamma : [a, b] \to U$, continuous, is a \term{curve} in $U$ with \term{initial point} $\gamma(a)$ and \term{end point} $\gamma(b)$, and it is \term{closed} if $\gamma(a) = \gamma(b)$. $|\gamma| = \{ \gamma(t) : t \in [a, b] \} \subseteq \mathbb{C}$ is the \term{image}. $\gamma$ is \term{piecewise $C^1$} if there is $a = t_0 < t_1 < \cdots < t_n = b$ with $\gamma$ continuously differentiable on $(t_{k-1}, t_k)$ and $\lim_{t \to t_{k-1}^+} \gamma^\prime(t)$ and $\lim_{t \to t_k^-} \gamma^\prime(t)$ exist.
+\remark For $U \subseteq \mathbb{C}$ non-empty and open, $\gamma : [a, b] \to U$, continuous, is a \term{curve} in $U$ with \term{initial point} $\gamma(a)$ and \term{end point} $\gamma(b)$, and it is \term{closed} if $\gamma(a) = \gamma(b)$. $|\gamma| = \{ \gamma(t) : t \in [a, b] \} \subseteq \mathbb{C}$ is the \term{image}. $\gamma$ is \term{piecewise $C^1$} if there is $a = t_0 < t_1 < \cdots < t_n = b$ with $\gamma$ continuously differentiable on $(t_{k-1}, t_k)$ and the limits $\lim_{t \to t_{k-1}^+} \gamma^\prime(t)$ and $\lim_{t \to t_k^-} \gamma^\prime(t)$ exist.
 
 If $\gamma$ is a curve then $\gamma^-$ is the \term{reverse} of $\gamma$, and if $\eta$ is another curve starting where $\gamma$ ends, then $\gamma \curveproduct \eta$ is the \term{product} of $\gamma$ and $\eta$ and is formed by traversing $\gamma$ and then $\eta$.
 
 \remark Throughout the section, it will be assumed that all curves are piecewise $C^1$.
 
-\remark $\gamma : [a, b] \to \mathbb{C}$ a curve, $f : |\gamma| \to \mathbb{C}$ continuous. The \term{integral of $f$ along $\gamma$} is $$\int_\gamma f(z)\,dz = \int_a^b f(\gamma(t)) \gamma^\prime(t)\,dt$$ where $\gamma^\prime = d\gamma/dt$ is defined at all but finitely any points in $[a, b]$, and is invariant under orientation preserving reparameterizations. Note that $$\int_\gamma f(z)\,dz = - \int_{\gamma^-} f(z)\,dz, \hskip 0.5cm \int_{\gamma \curveproduct \eta} f(z)\,dz = \int_\gamma f(z)\,dz + \int_\eta f(z)\,dz.$$ For $f = u + iv$ and $\gamma(t) = x(t) + iy(t)$, $$\int_\gamma f(z)\,dz = \int_\gamma (u\,dx - v\,dy) + i \int_\gamma (v\,dx + u\,dy).$$
+\remark For $\gamma : [a, b] \to \mathbb{C}$ a curve, $f : |\gamma| \to \mathbb{C}$ continuous, the \term{integral of $f$ along $\gamma$} is $$\int_\gamma f(z)\,dz = \int_a^b f(\gamma(t)) \gamma^\prime(t)\,dt$$ where $\gamma^\prime = d\gamma/dt$ is defined at all but finitely any points in $[a, b]$, and is invariant under orientation preserving reparameterizations of $\gamma$. Note that $$\int_\gamma f(z)\,dz = - \int_{\gamma^-} f(z)\,dz, \hskip 0.5cm \int_{\gamma \curveproduct \eta} f(z)\,dz = \int_\gamma f(z)\,dz + \int_\eta f(z)\,dz.$$ For $f = u + iv$ and $\gamma(t) = x(t) + iy(t)$, $$\int_\gamma f(z)\,dz = \int_\gamma (u\,dx - v\,dy) + i \int_\gamma (v\,dx + u\,dy).$$
 
 \remark The \term{length} of a curve $\gamma$ is $\int_\gamma |dz| = \int_0^1 |\gamma^\prime(t)|\,dt$, denoted $\len(\gamma)$.
 
 \remark The \term{ML-inequality} is: $$\left|\int_\gamma f(z)\,dz\right| \leq \sup_{z \in |\gamma|} |f(z)| \cdot \len(\gamma).$$
 
-\theorem{Continuous Dependence on Vertices} $f : U \to \mathbb{C}$ is continuous. For $T$ a closed triangle lying in $U$, $\int_{\partial T} f(z)\,dz$ depends continuously on the vertices of $T$.
+\theorem{Continuous Dependence on Vertices} Let $f : U \to \mathbb{C}$ be continuous. For $T$ a closed triangle lying in $U$, $\int_{\partial T} f(z)\,dz$ depends continuously on the vertices of $T$.
 
 \remark $F$ is a \term{primative} of the continuous function $f : U \to \mathbb{C}$ if $F^\prime(z) = f(z)$ in $U$.
 
@@ -154,7 +155,7 @@ If $\gamma$ is a curve then $\gamma^-$ is the \term{reverse} of $\gamma$, and if
 
 \begin{topic}{Cauchy's theory in a disk}
 
-\theorem{Primitives in Disks} $D \subseteq \mathbb{C}$ an open disk, $f : D \to \mathbb{C}$ continuous. If $\int_{\partial T} f(z)\,dz = 0$ for every closed triangle $T \subseteq D$ then $f$ has a primitive in $D$.
+\theorem{Primitives in Disks} Let $D \subseteq \mathbb{C}$ be an open disk and $f : D \to \mathbb{C}$ continuous. If $\int_{\partial T} f(z)\,dz = 0$ for every closed triangle $T \subseteq D$ then $f$ has a primitive in $D$.
 
 \theorem{Goursat's Theorem} If $f \in \holo{U}$ then $\int_{\partial T} f(z)\,dz = 0$ for every closed triangle $T \subseteq U$.
 
@@ -172,52 +173,52 @@ If $\gamma$ is a curve then $\gamma^-$ is the \term{reverse} of $\gamma$, and if
 
 \theorem{Morera's Theorem} If $f : U \to \mathbb{C}$ is continuous and $\int_{\partial T} f(z)\,d(z) = 0$ for every closed triangle $T \subseteq U$, then $f \in \holo{U}$.
 
-\remark If $U \subseteq \mathbb{C}$ is open and $L$ is a line. If $f$ is continuous in $U$ and $f \in \holo{U \setminus L}$ then $f \in \holo{U}$.
+\remark If $U \subseteq \mathbb{C}$ is open, $L$ is a line, $f \in \holo{U \setminus L}$ but continuous in $U$, then $f \in \holo{U}$.
 
 \theorem{Cauchy's Estimates} If $f \in \holo{\disk{p}{r}}$ is continuous on $\cdisk{p}{r}$, then for $n \geq 0$: $$\left|f^{(n)}(p)\right| \leq \dfrac{n!}{r^n} \sup_{|z - p| = r} |f(z)|.$$
 
-\theorem{Ratio Bound} If $f$ is holomorphic taking $\disk{p}{r}$ into $\disk{q}{R}$, then $|f^\prime(p)| \leq R/r$.
+\theorem{Ratio Bound} If $f$ is holomorphic with $f(\disk{p}{r}) \subseteq \disk{q}{R}$, then $|f^\prime(p)| \leq R/r$.
 
 \theorem{Liouville's Theorem} Every bounded entire function is constant.
 
-\theorem{Differentiating Under the Integral} Let $U \subseteq \mathbb{C}$ be open and $\varphi : U \times [a, b] \to \mathbb{C}$ continuous such that for $t \in [a, b]$, $z \mapsto \varphi(z, t) \in \holo{U}$ with derivative $\varphi^\prime(z, t)$. Define $f : U \to \mathbb{C}$  by $$f(z) = \int_a^b \varphi(z, t)\,dt.$$ Then $f \in \holo{U}$ and $$f^\prime(z) = \int_a^b \varphi^\prime(z, y)\,dt,~~z \in U.$$ Inductively, $$f^{(n)}(z) = \int_a^b \varphi^{(n)}(z, t)\,dt,~~z \in U.$$
+\theorem{Differentiating Under the Integral} Let $U \subseteq \mathbb{C}$ be open and $\varphi : U \times [a, b] \to \mathbb{C}$ continuous such that for $t \in [a, b]$, $z \mapsto \varphi(z, t) \in \holo{U}$ with derivative $\varphi^\prime(z, t)$. Define $f : U \to \mathbb{C}$  by $$f(z) = \int_a^b \varphi(z, t)\,dt.$$ Then $f \in \holo{U}$ and $$f^\prime(z) = \int_a^b \varphi^\prime(z, t)\,dt,~~z \in U.$$ Inductively, $$f^{(n)}(z) = \int_a^b \varphi^{(n)}(z, t)\,dt,~~z \in U.$$
 
-\corollary{Differentiating Curve Integral} $\gamma$ a curve, $g : |\gamma| \to \mathbb{C}$ continuous. If $f : \mathbb{C} \setminus |\gamma| \to \mathbb{C}$ is defined as $$f(z) = \int_\gamma \dfrac{g(\zeta)}{(\zeta - z)^n}\,d\zeta,~~n \geq 1$$ then $f \in \holo{\mathbb{C} \setminus |\gamma|}$ and $$f^\prime(z) = n \int_\gamma \dfrac{g(\zeta)}{(\zeta - z)^{n+1}}\,d\zeta,~~z \in \mathbb{C} \setminus |\gamma|.$$
+\corollary{Differentiating Curve Integral} If $\gamma$ is a piecewise $C^1$ curve, $g : |\gamma| \to \mathbb{C}$ is continuous, and $f : \mathbb{C} \setminus |\gamma| \to \mathbb{C}$ is defined as $$f(z) = \int_\gamma \dfrac{g(\zeta)}{(\zeta - z)^n}\,d\zeta,~~n \geq 1$$ then $f \in \holo{\mathbb{C} \setminus |\gamma|}$ and $$f^\prime(z) = n \int_\gamma \dfrac{g(\zeta)}{(\zeta - z)^{n+1}}\,d\zeta,~~z \in \mathbb{C} \setminus |\gamma|.$$
 
 \end{topic}
 
 
 \begin{topic}{Mapping Properties of Holomorphic Functions}
 
-\remark Let $f \in \holo{U}$ be not identically zero in $\disk{p}{r} \subseteq U$ with power series $f(z) = \sum_{n=0}^\infty a_n (z - p)^n$ there. The \term{order} of $f$ at $p$ is the index of the first non-zero $a_m$, denoted $\order(f, p)$. $\order(f, p) \geq 1$ iff $f(p) = 0$. $p$ is a \term{simple zero} of $f$ if $\order(f, p) = 1$. $\order(f, p)$ is the unique integer $m \geq 0$ such that $f(z) = (z - p)^m f_1(z)$ with $f_1 \in \holo{U}$ and $f_1(p) \neq 0$.
+\remark Let $f \in \holo{U}$ be not identically zero in $\disk{p}{r} \subseteq U$ with power series $f(z) = \sum_{n=0}^\infty a_n (z - p)^n$ there. The \term{order} of $f$ at $p$ is the index of the first non-zero $a_m$, denoted by $\order(f, p)$. $\order(f, p) \geq 1$ iff $f(p) = 0$ and $p$ is a \term{simple zero} of $f$ if $\order(f, p) = 1$. $\order(f, p)$ is the unique integer $m \geq 0$ such that $f(z) = (z - p)^m f_1(z)$ with $f_1 \in \holo{U}$ and $f_1(p) \neq 0$.
 
 \remark $U \subseteq \mathbb{C}$ is a \term{domain} if it is open, non-empty, and connected.
 
-\lemma{Accumulating Zero} $f \in \holo{U}$, $U$ a domain. If $f^{-1}(0)$ accumulates in $U$ then $f \equiv 0$ in $U$. Consequently, a non-constant holomorphic function on a domain has at most countably many zeroes, all of which are isolated.
+\lemma{Accumulating Zero} For $f \in \holo{U}$ and $U$ a domain, if $f^{-1}(0)$ accumulates in $U$ then $f \equiv 0$ in $U$. Consequently, a non-constant holomorphic function on a domain has at most countably many zeroes, all of which are isolated.
 
 \theorem{Identity Theorem} If $f = g$ accumulates in $U$, a domain, with $f, g \in \holo{U}$ then $f = g$ in $U$.
 
-\lemma{Slope Continuity} If $f \in \holo{U}$ then the following $g : U \times U \to \mathbb{C}$ is continuous: $$\renewcommand{\arraystretch}{1.2}g(\zeta, z) =
+\lemma{Slope Continuity} If $f \in \holo{U}$ then $g : U \times U \to \mathbb{C}$ is continuous, where $g$ is: $$\renewcommand{\arraystretch}{1.2}g(\zeta, z) =
 \begin{cases}
 \dfrac{f(\zeta) - f(z)}{\zeta - z}&\zeta \neq z\\
 f^\prime(z)&\zeta = z
 \end{cases}\renewcommand{\arraystretch}{1.0}$$
 
-\theorem{Holomorphic Inverse Function Theorem} Suppose $f \in \holo{U}$, $p \in U$, and $f^\prime(p) \neq 0$. Then there are open neighborhoods $V \subseteq U$ of $p$ and $W \subseteq \mathbb{C}$ of $f(p)$ such that $f : V \to W$ is a bijection such that $f^{-1} : W \to V$ is holomorphic and $$\left(f^{-1}\right)^\prime(w) = \dfrac{1}{f^\prime(f^{-1}(w))},~~w \in W.$$
-
 \remark $f : V \to W$ is a \term{biholomorphism} if $f$ is bijective and holomorphic with holomorphic inverse.
 
-\theorem{Local Normal Form} $f \in \holo{U}$ non-constant with $U$ a domain. For $p \in U$ there exists positive $m \in \mathbb{N}$ and neighborhoods $V \subseteq U$ of $p$ and $W \subseteq \mathbb{C}$ of $q = f(p)$ and biholomorphisms $\varphi : V \to \udisk$, $\psi : W \to \udisk$ such that $\varphi(p) = \psi(q) = 0$ and $(\psi \circ f \circ \varphi^{-1})(w) = w^m$ for $w \in \udisk$.
+\theorem{Holomorphic Inverse Function Theorem} Suppose $f \in \holo{U}$, $p \in U$, and $f^\prime(p) \neq 0$. Then there are open neighborhoods $V \subseteq U$ of $p$, $W \subseteq \mathbb{C}$ of $f(p)$ such that $f : V \to W$ is a biholomorphism with $$\left(f^{-1}\right)^\prime(w) = \dfrac{1}{f^\prime(f^{-1}(w))},~~w \in W.$$
+
+\theorem{Local Normal Form} For $f \in \holo{U}$ non-constant, $U$ a domain, and $p \in U$, there exists positive $m \in \mathbb{N}$ and neighborhoods $V \subseteq U$ of $p$ and $W \subseteq \mathbb{C}$ of $q = f(p)$ and biholomorphisms $\varphi : V \to \udisk$, $\psi : W \to \udisk$ such that $\varphi(p) = \psi(q) = 0$ and $(\psi \circ f \circ \varphi^{-1})(w) = w^m$ for $w \in \udisk$.
 
 \remark The $m$ in the Local Normal Form is the order of the zero at $p$ of $f - f(p)$ and is called the \term{local degree} of $f$ at $p$, denoted $\degree(f, p) = \order(f - f(p), p)$. $p$ is called a \term{critical point} when $\degree(f, p) > 1$ (i.e.\ $f^\prime(p) = 0$) with \term{critical value} $f(p)$.
 
-\theorem{Open Mapping Theorem} $f \in \holo{U}$ non-constant with $U$ a domain: then $f(U)$ is open in $\mathbb{C}$.
+\theorem{Open Mapping Theorem} If $f \in \holo{U}$ non-constant with $U$ a domain then $f(U)$ is open in $\mathbb{C}$.
 
-\corollary{Critical Points \& Biholomorphisms} $f \in \holo{U}$ is injective in a domain $U$. Then $f$ has no critical points in $U$ and is biholomorphic with its image.
+\corollary{Critical Points \& Biholomorphisms} If $f \in \holo{U}$ is injective in a domain $U$, then $f$ has no critical points in $U$ and is biholomorphic with its image.
 
 \theorem{Maximum Principle for Open Maps} Suppose $f : U \to \mathbb{C}$ is open. Then $|f|$ does not attain a local maximum in $U$ and, if $f$ is non-vanishing in $U$, does not attain a local minimum.
 
-\theorem{Maximum Principle for Holomorphic Functions} Let $U \subseteq \mathbb{C}$ is a bounded domain and $f : \overline{U} \to \mathbb{C}$ is continuous and $f \in \holo{U}$. Then
+\theorem{Maximum Principle for Holomorphic Functions} Let $U \subseteq \mathbb{C}$ be a bounded domain and $f : \overline{U} \to \mathbb{C}$ be continuous with $f \in \holo{U}$. Then
 \begin{enumerate}
 \item[(i)] $|f(z)| \leq \sup_{\zeta \in \partial U} |f(\zeta)|$ for all $z \in U$;
 \item[(ii)] $|f(z)| \geq \inf_{\zeta \in \partial U} |f(\zeta)|$ for all $z \in U$ provided $f$ does not vanish in $U$.

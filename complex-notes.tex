@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage[top=1.25in, bottom=1.25in, left=1.0in, right=1.0in]{geometry}
 \usepackage{hyperref}
+\usepackage{tikz-cd}
 
 \pagestyle{fancy}
 
@@ -58,7 +59,7 @@ Graduate Center, CUNY\\
 {\large These notes are drawn from the upcoming text by \href{http://qcpages.qc.cuny.edu/~zakeri/}{\underline{Saeed Zakeri}} of Queens College in NY. Some remarks, theorems, etc are paraphrased; some remarks, theorems, etc are verbatim. Notes created with the permission of the professor, who retains all copyright rights regarding his work. This is, explicitly, a derivative work made with permission of the author.
 \\
 
-\noindent Section and subsection titles exactly follow the chapters and sections of the text as of the time of the writing.}
+\noindent Section and subsection titles exactly follow the chapters and sections of the text as of the time of the writing. There is some small re-ordering of results.}
 
 \newpage
 
@@ -244,9 +245,9 @@ If $\gamma$ is a curve then $\gamma^-$ is the \term{reverse} of $\gamma$, and if
 \end{itemize}
 When such a function exists, $\gamma_0$ and $\gamma_1$ are called \term{homotopic} in X, written $\gamma_0 \simeq \gamma_1$. $\gamma_0 \simeq \gamma_1$ if $\gamma_0$ can be continuously deformed {\em in $X$} to $\gamma_1$.
 
-\lemma{Homotopy of Compositions} $\gamma$ a curve in $X$, $\varphi : [0, 1] \to [0, 1]$ continuous.
+\lemma{Homotopy of Compositions} Let $\gamma$ be a curve in $X$, $\varphi : [0, 1] \to [0, 1]$ continuous.
 \begin{enumerate}
-\item[(i)] If $\varphi$ maps $0$ and $1$ to themselves then $\gamma \circ \varphi \simeq \gamma$.
+\item[(i)] If $\varphi$ fixes $0$ and $1$ then $\gamma \circ \varphi \simeq \gamma$.
 \item[(ii)] If $\varphi(0) = \varphi(1)$ then $\gamma \circ \varphi \simeq \varepsilon_p$, $p = (\gamma \circ \varphi)(0)$.
 \end{enumerate}
 
@@ -258,9 +259,9 @@ When such a function exists, $\gamma_0$ and $\gamma_1$ are called \term{homotopi
 \item[(iv)] If $\gamma(1) = \eta(0)$ and $\eta(1) = \xi(0)$ then $(\gamma \curveproduct \eta) \curveproduct \xi \simeq \gamma \curveproduct (\eta \curveproduct \xi)$.
 \end{enumerate}
 
-\remark The equivalence class of a curve $\gamma$ under $\simeq$ is called its \term{homotopy class} and is denoted $[\gamma]$. When $\gamma(1) = \eta(0)$ we have $[\gamma] \curveproduct [\eta] = [\gamma \curveproduct \eta]$ is well defined. For $p \in X$, the set of homotopy classes of closed curves starting at $p$ forms a group, called the \term{fundamental group} of $X$ with \term{base point} $p$, under the aforementioned product and is denoted by $\pi_1(X, p)$.
+\remark The equivalence class of a curve $\gamma$ under $\simeq$ is called its \term{homotopy class} and is denoted $[\gamma]$. If $\gamma(1) = \eta(0)$ then $[\gamma] \curveproduct [\eta] = [\gamma \curveproduct \eta]$ is well defined. For $p \in X$, the set of homotopy classes of closed curves starting at $p$ forms a group, called the \term{fundamental group} of $X$ with \term{base point} $p$, under the aforementioned product and is denoted by $\pi_1(X, p)$.
 
-\remark $f : X \to Y$ continuous. Then $f_\ast : \pi_1(X, p) \to \pi_1(Y, f(p))$ given by $f_\ast([\gamma]) = [f \circ \gamma]$ is a group homomorphism. If $g : Y \to Z$ is continuous, then $(g \circ f)_\ast = g_\ast \circ f_\ast$. If $f$ is a homeomorphism then $f_\ast$ is an isomorphism with inverse $(f^{-1})_\ast$--homeomorphic spaces have isomorphic fundamental groups.
+\remark If $f : X \to Y$ is continuous then $f_\ast : \pi_1(X, p) \to \pi_1(Y, f(p))$ given by $f_\ast([\gamma]) = [f \circ \gamma]$ is a group homomorphism. If $g : Y \to Z$ is continuous then $(g \circ f)_\ast = g_\ast \circ f_\ast$. If $f$ is a homeomorphism then $f_\ast$ is an isomorphism with inverse $(f^{-1})_\ast$ i.e.\ homemorphic spaces have isomorphic fundamental groups).
 
 \remark $X$, path-connected, is \term{simply connected} if $\pi_1(X, p)$ is trivial for some (and hence every) $p \in X$. If every closed curve $\gamma$ from $p \in X$ is \term{null-homotopic}, i.e.\ $\gamma \simeq \varepsilon_p$, then $X$ is simply connected.
 
@@ -286,6 +287,13 @@ $\gamma_0$ is called \term{freely null-homotopic} in $X$ if $\gamma_1 = \varepsi
 
 \remark A \term{lift} (under $\exp$) of a continuous map $f : X \to \mathbb{C}^\ast$ is a continuous map $\tilde{f} : X \to \mathbb{C}$ satisfying $\exp(\tilde{f}) = f$. $\tilde{f}$ is also called a \term{branch of the logarithm of $f$}.
 
+\begin{center}
+\begin{tikzcd}
+& \mathbb{C} \arrow[d, "\exp"] \\
+X \arrow[ru, "\tilde{f}"] \arrow[r, "f"] & \mathbb{C}^\ast
+\end{tikzcd}
+\end{center}
+
 \theorem{Uniqueness of Lifts} Any two lifts of a continuous map from a connected space $X$ to $\mathbb{C}^\ast$ differ by an integer multiple of $2 \pi i$.
 
 \theorem{Existence of Lifts from Unit Interval \& Square}
@@ -295,13 +303,13 @@ $\gamma_0$ is called \term{freely null-homotopic} in $X$ if $\gamma_1 = \varepsi
 \end{enumerate}
 Part (i) is the \term{curve lifting property} of $\exp$.
 
-\lemma{Lebesgue's Cover Lemma} For an open cover $\{U_\alpha\}$, there exists a \term{Lebesgue number} $\delta > 0$ such that any set $E$ with $\diam E < \delta$ lies in some $U_\alpha$.
+\lemma{Lebesgue's Cover Lemma} For an open cover $\{U_\alpha\}$ of a compact metric space $X$, there exists a \term{Lebesgue number} $\delta > 0$ such that any set $E$ with $\diam E < \delta$ lies in some $U_\alpha$.
 
-\corollary{Lift End Points Corollary} Let $\gamma_0 \simeq \gamma_1$ with $p \in \mathbb{C}$ such that $\exp(p) = \gamma_i(0)$. Let $\tilde{\gamma_i}$ be the unique lift of $\gamma_i$ with $\tilde{\gamma_i}(0) = p$. Then $\tilde{\gamma_0}(1) = \tilde{\gamma_1}(1)$ and $\gamma_0$ is a null-homotopic closed curve if and only if $\tilde{\gamma}$ is a closed curve.
+\corollary{Lift End Points Corollary} Let $\gamma_0 \simeq \gamma_1$ with $p \in \mathbb{C}$ such that $\exp(p) = \gamma_i(0)$. Let $\tilde{\gamma_i}$ be the unique lift of $\gamma_i$ with $\tilde{\gamma_i}(0) = p$. Then $\tilde{\gamma_0}(1) = \tilde{\gamma_1}(1)$. $\gamma_0$ is a null-homotopic closed curve if and only if $\tilde{\gamma}$ is a closed curve.
 
 \remark A space is \term{locally path-connected} if every neighborhood of every point contains a path-connected neighborhood of that point.
 
-\theorem{Existence of Lifts} Suppose $X$ is simply connected and locally path-connected and $f : X \to \mathbb{C}^\ast$ continuous. Then $f = \exp(g)$ for some continuous $g : X \to \mathbb{C}$ which unique up to addition of an integer multiple of $2 \pi i$.
+\theorem{Existence of Lifts} Suppose $X$ is simply connected and locally path-connected and $f : X \to \mathbb{C}^\ast$ is continuous. Then $f = \exp(g)$ for some continuous $g : X \to \mathbb{C}$ which unique up to addition of an integer multiple of $2 \pi i$.
 
 \corollary{Existence of Holomorphic Logarithms and n-th Roots} Suppose $U \subseteq \mathbb{C}$ is a simply connected domain on which $f \in \holo{C}$ does not vanish. Then:
 \begin{enumerate}
@@ -316,14 +324,14 @@ Part (i) is the \term{curve lifting property} of $\exp$.
 
 \remark All the lifting results of the previous section hold if we replace $\mathbb{C}^\ast$ and $z \mapsto \exp(z)$ by $\mathbb{C} \setminus \{p\}$ and $z \mapsto \exp(z) + p$, respectively.
 
-\remark $\gamma$ a curve with $p \not\in |\gamma|$ and $\tilde{\gamma}$ a lift of $\gamma$ under $z \mapsto \exp(z) + p$. The quantity $$W(\gamma, p) = \dfrac{1}{2 \pi i}\left(\tilde{\gamma}(1) - \tilde{\gamma}(0)\right)$$ is the \term{winding number} of $\gamma$ with respect to $p$. $W(\gamma, p) \in \mathbb{Z}$ if and only if $\gamma$ is closed.
+\remark Let $\gamma$ be a curve, $p \not\in |\gamma|$, and $\tilde{\gamma}$ a lift of $\gamma$ under $z \mapsto \exp(z) + p$. The quantity $$W(\gamma, p) = \dfrac{1}{2 \pi i}\left(\tilde{\gamma}(1) - \tilde{\gamma}(0)\right)$$ is the \term{winding number} of $\gamma$ with respect to $p$. $W(\gamma, p) \in \mathbb{Z}$ if and only if $\gamma$ is closed.
 
 \theorem{Properties of the Winding Number} Let $\gamma$ be a curve with $p \not\in |\gamma|$, then:
 \begin{enumerate}
 \item[(i)] $W(\gamma, p) = W(\gamma + w, p + w)$ for all $w \in \mathbb{C}$.
 \item[(ii)] $W(\gamma^-, p) = -W(\gamma, p)$.
-\item[(iii)] If $\eta$ is a curve with $p \not\in \eta, \eta(0) = \gamma(1)$ then $W(\gamma \curveproduct \eta, p) = W(\gamma, p) + W(\eta, p)$.
-\item[(iv)] If $\eta \simeq \gamma$ (or freely homotopic closed curves) in $\mathbb{C} \setminus \{ p \}$ then $W(\gamma, p) = W(\eta, p)$.
+\item[(iii)] If $\eta$ is a curve with $p \not\in |\eta|, \eta(0) = \gamma(1)$ then $W(\gamma \curveproduct \eta, p) = W(\gamma, p) + W(\eta, p)$.
+\item[(iv)] If $\eta \simeq \gamma$ (or they are freely homotopic closed curves) in $\mathbb{C} \setminus \{ p \}$ then $W(\gamma, p) = W(\eta, p)$.
 \end{enumerate}
 If $\gamma$ is closed, then
 \begin{enumerate}
@@ -360,7 +368,7 @@ $$\sum_{k=1}^m n_k \gamma_k \mapsto \sum_{k=1}^m n_k \gamma_k(1) - \sum_{k=1}^m 
 \theorem{Winding numbers of chains and cycles} \begin{enumerate}
 \item[(i)] For any chain $\gamma$, $W(-\gamma, p) = -W(\gamma, p)$.
 \item[(ii)] For any two chains $\gamma$ and $\eta$, $W(\gamma + \eta, p) = W(\gamma, p) + W(\eta, p)$.
-\item[(iii)] If $\gamma$ is a cycle then $W(\gamma, \cdot)$'s range is $\mathbb{Z}$, is constant on the connected components of its domain, vanishing on the unbounded component.
+\item[(iii)] If $\gamma$ is a cycle then $W(\gamma, \cdot)$'s range is $\mathbb{Z}$, is constant on the connected components of its domain, and vanishes on the unbounded component.
 \end{enumerate}
 
 \remark Let $U \subseteq \mathbb{C}$ be non-empty and open. A cycle $\gamma$ is \term{null-homologous}, $\gamma \sim 0$, if $W(\gamma, \cdot) \equiv 0$ on $\mathbb{C} \setminus U$.
@@ -372,15 +380,13 @@ $$\sum_{k=1}^m n_k \gamma_k \mapsto \sum_{k=1}^m n_k \gamma_k(1) - \sum_{k=1}^m 
 \remark $H_1(U)$ is the quotient group of all cycles in $U$ by the all the null-homologous cycles in $U$.
 
 \theorem{Homotopic implies homologous} \begin{enumerate}
-\item[(i)] If $\gamma \simeq \eta$ in $U$ then $\gamma \sim \eta$ in $U$.
-\item[(ii)] If $\gamma$ and $\eta$ are freely homotopic in $U$ then $\gamma \sim \eta$ in $U$.
+\item[(i)] If $\gamma \simeq \eta$ in $U$ then $\gamma - \eta \sim 0$ in $U$.
+\item[(ii)] If $\gamma$ and $\eta$ are freely homotopic closed curves in $U$ then $\gamma \sim \eta$ in $U$.
 \end{enumerate}
+Thus $\varphi : \pi_1(U, p) \to H_1(U)$, $[\gamma] \mapsto \langle \gamma \rangle$, is well-defined.
 
-\remark This implies that $\varphi : \pi_1(U, p) \to H_1(U)$ defined by sending $\gamma$'s homotopy class to its homology class is well-defined.
-
-\lemma{Homology class of a closed product} Suppose $\gamma_1 \curveproduct \gamma_2 \curveproduct \cdots \curveproduct \gamma_n$ is a closed curve. Then, in $U$, $$\gamma_1 \curveproduct \gamma_2 \curveproduct \cdots \curveproduct \gamma_n ~ \gamma_1 + \gamma_2 + \cdots + \gamma_n.$$
-
-\remark This implies that $\varphi$ in the above remark is a group homomorphism. Since $H_1(U)$ is abelian, $\varphi$ must vanish on the commutator $C$ of $\pi_1(U, p)$, inducing a homomorphism $\Phi : \pi_1(U, p)/C \to H_1(U)$. Poincar\'{e} and Hurewicz showed $\Phi$ is an isomorphism.
+\lemma{Homology class of a closed product} Suppose $\gamma_1 \curveproduct \gamma_2 \curveproduct \cdots \curveproduct \gamma_n$ is a closed curve. Then, in $U$, $$\gamma_1 \curveproduct \gamma_2 \curveproduct \cdots \curveproduct \gamma_n \sim \gamma_1 + \gamma_2 + \cdots + \gamma_n.$$
+And so $\varphi$ defined above is a group homomorphism. $\varphi$ vanishes on the commutator $C$ of $\pi_1(U, p)$ since $H_1(U)$ is abelian, inducing a homomorphism $\Phi : \pi_1(U, p)/C \to H_1(U)$. Poincar\'{e} and Hurewicz showed $\Phi$ is an isomorphism.
 
 \corollary{Homology group of simply connected domains} Every cycle in a simply connected domain $U$ is null homologous, and so $H_1(U) = 0$ 
 
@@ -389,9 +395,9 @@ $$\sum_{k=1}^m n_k \gamma_k \mapsto \sum_{k=1}^m n_k \gamma_k(1) - \sum_{k=1}^m 
 
 \begin{topic}{The homology version of Cauchy's theorem}
 
-\remark Let $\gamma = \sum_{k=1}^m n_k \gamma_k$ be a chain, each $\gamma_k$ piecewise $C^1$, and let $f : |\gamma| \to \mathbb{C}$ be continuous. Then define $$\int_\gamma f(z)\,dz = \sum_{k=1}^m n_k \int_{\gamma_k} f(z)\,dz.$$
+\remark Let $\gamma = \sum_{k=1}^m n_k \gamma_k$ be a chain, each $\gamma_k$ piecewise $C^1$, and let $f : |\gamma| \to \mathbb{C}$ be continuous. Define $$\int_\gamma f(z)\,dz = \sum_{k=1}^m n_k \int_{\gamma_k} f(z)\,dz.$$
 
-\remark Observe the special case of $f(z) = 1/(z-p)$, $p \not\in |\gamma|$ gives $$\dfrac{1}{2 \pi i} \int_\gamma \dfrac{dz}{z - p} = \sum_{k=1}^m n_k W(\gamma_k, p) = W(\gamma, p).$$
+\remark The special case of $f(z) = 1/(z-p)$, $p \not\in |\gamma|$ gives $$\dfrac{1}{2 \pi i} \int_\gamma \dfrac{dz}{z - p} = \sum_{k=1}^m n_k W(\gamma_k, p) = W(\gamma, p).$$
 
 \theorem{Homology version of Cauchy's theorem} Let $U \subseteq \mathbb{C}$ be open and $\gamma$ a piecewise $C^1$ null-homologous cycle in $U$. For $f \in \holo{U}$: $$\int_\gamma f(z)\,dz = 0,$$ $$f(z) \cdot W(\gamma, z) = \dfrac{1}{2 \pi i} \int_\gamma \dfrac{f(\zeta)}{\zeta - z}\,d\zeta,~~z \in U \setminus |\gamma|.$$
 
@@ -403,7 +409,7 @@ $$\sum_{k=1}^m n_k \gamma_k \mapsto \sum_{k=1}^m n_k \gamma_k(1) - \sum_{k=1}^m 
 
 \corollary{Cauchy's integral formula for higher derivatives} For $f \in \holo{U}$, $\gamma \sim 0$ in $U$, and $n \geq 1$: $$f^{(n)}(z) \cdot W(\gamma, z) = \dfrac{n!}{2 \pi i} \int_\gamma \dfrac{f(\zeta)}{(\zeta - z)^{n+1}}\,d\zeta~~z \in U \setminus |\gamma|.$$
 
-\remark If $\gamma$ is not piecewise $C^1$ or rectifiable, there is a piecewise $C^1$ curve, $\eta$ it is homotopic to. If $f \in \holo{U}$ then define $\int_\gamma f(z)\,dz$ to be $\int_\eta f(z)\,dz$ which by the above statements is independent of the choice of $\eta$. Extending to cycles by linearity we can always assume paths of integration are piecewise $C^1$.
+\remark If $\gamma$ is not piecewise $C^1$ or rectifiable, there is a piecewise $C^1$ curve, $\eta$, it is homotopic to. If $f \in \holo{U}$ then define $\int_\gamma f(z)\,dz$ to be $\int_\eta f(z)\,dz$ which by the above statements is independent of the choice of $\eta$. Extending to cycles by linearity we can always assume paths of integration are piecewise $C^1$.
 
 \end{topic}
 

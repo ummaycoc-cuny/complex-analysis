@@ -28,6 +28,7 @@ Graduate Center, CUNY\\
 \DeclareMathOperator{\order}{ord}
 \DeclareMathOperator{\degree}{deg}
 \DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\res}{res}
 
 \newenvironment{topic}[1]{%
 {\subsection{#1}}%
@@ -423,15 +424,15 @@ And so $\varphi$ defined above is a group homomorphism. $\varphi$ vanishes on th
 
 \theorem{Riemann's removable singularity theorem} If a holomorphic function is bounded in a punctured neighborhood of a isolated singularity, then the singularity is removable.
 
-\remark Boundedness can be replaced by $\lim_{z \to p}f(z) = 0$ in the above.
+\remark Boundedness can be replaced by $\lim_{z \to p}(z - p)f(z) = 0$ in the above.
 
 \theorem{Classification of isolated singularities} An isolated singularity $p$ of $f$, holomorphic, is one of: \begin{itemize}
-\item[(i)] Removable for which $\lim_{z \to p} f(z)$ exists.
-\item[(ii)] A \term{pole} for which $\lim_{z \to p} f(z) = \infty$. In this case there is a positive integer $m$ such that $f_1(z) = (z - p)^m f(z)$ has a removable singularity at $p$ and $f_1(p) \neq 0$.
-\item[(iii)] An \term{essential singularity} for which $\lim_{z \to p}$ does not exist. In this case, for every small $r > 0$, $f(\pdisk{p}{r})$ is dense in $\mathbb{C}$.
+\item[(i)] Removable if $\lim_{z \to p} f(z)$ exists.
+\item[(ii)] A \term{pole} if $\lim_{z \to p} f(z) = \infty$. In this case there is a positive integer $m$ such that $f_1(z) = (z - p)^m f(z)$ has a removable singularity at $p$ and $f_1(p) \neq 0$.
+\item[(iii)] An \term{essential singularity} if $\lim_{z \to p}$ does not exist.
 \end{itemize}
 
-\remark The density statement in (iii) is the Casorati-Weierstrass theorem. Picard showed that at most one value of $\mathbb{C}$ is missed.
+\theorem{Casorati-Weierstrass theorem} If $p$ is an essential singularity of $f$ then for all small $r > 0$, $f(\pdisk{p}{r})$ is dense in $\mathbb{C}$. Picard showed that at most one value of $\mathbb{C}$ is missed.
 
 \remark If $f$ has a pole at $p$, then the $m$ in the classification theorem is the \term{order} of $f$ at $p$, denoted $\order(f, p)$.
 
@@ -439,9 +440,9 @@ And so $\varphi$ defined above is a group homomorphism. $\varphi$ vanishes on th
 
 \remark If $m = \order(f, p)$ then $$f(z) = \sum_{n=0}^\infty b_n (z - p)^{n - m}$$ in a punctured neighborhood about $p$. The \term{principle part} of $f$ at $p$ is the rational function $$\dfrac{b_0}{(z - p)^m} + \cdots + \dfrac{b_{m-1}}{z-p}.$$
 
-\remark The principle part of $f$ at $p$ is the unique polynomial $P$ in $(z-p)^{-1}$ with $P(0) = 0$ such that $f(z) - P((z-p)^{-1})$ has a removable singularity at $p$.
+\remark The principle part of $f$ at $p$ is the unique polynomial $P$ in $(z-p)^{-1}$ with $P(0) = 0$ such that $p$ is a removable singularity of $f(z) - P((z-p)^{-1})$.
 
-\remark The principle part of $f$ at $p$ is the unique rational function $R$ with a single pole, $p$, such that $\lim_{z \to \infty} R(z) = 0$ and $f(z) - R(z)$ has a removable singularity at $p$.
+\remark The principle part of $f$ at $p$ is the unique rational function $R$ with a single pole, $p$, such that $p$ is a removable singularity of $f(z) - R(z)$ and $\lim_{z \to \infty} R(z) = 0$.
 
 \remark If $f$ has order $m$ at $p$ then $f$ is locally $m$-to-$1$ near $p$ (consider $1/f$'s zeroes). The the \term{degree} of $f$ at a pole $p$ is equal to $\order(f, p)$, denoted $\degree(f, p)$.
 
@@ -495,6 +496,29 @@ f(1/z)&z \neq 0\\[10pt]
 
 \item Otherwise examine $f$ in the usual sense in $\mathbb{C}$.
 \end{enumerate}
+
+\end{topic}
+
+
+\begin{topic}{Laurent Series}
+
+\theorem{Laurent Series}: Let $U$ be an open annulus about $p \in \mathbb{C}$ with inner and outer radii $R_1, R_2 \in [0, \infty]$, respectively. Then $f \in \holo{U}$ has a power series, called the \term{Laurent Series}, in $U$ of the form $$f(z) = \sum_{n=-\infty}^\infty a_n (z - p)^n~~z \in U$$ where $$a_n = \dfrac{1}{2 \pi i} \int_{\sphere{p}{r}} \dfrac{f(\zeta)}{(\zeta - p)^{n+1}} d\zeta~~R_1 < r < R_2.$$ The series converges for every open annulus of radii $a$, $b$ with $R_1 < a < b < R_2$.
+
+\end{topic}
+
+\begin{topic}{Residues}
+
+\remark Let $p$ be an isolated singularity of $f$. The \term{residue} of $f$ at $p$ is $$\res(f, p) = \dfrac{1}{2 \pi i} \int_{\sphere{p}{r}} f(z) dz$$ where $r > 0$ and $f$ is holomorphic in a neighborhood of $\cdisk{p}{r} \setminus \{p\}$.
+
+\theorem{Computing the residue} If $f$ has the Laurent series $\sum_{n=-\infty}^{\infty} a_n (z - p)^n$ near $p$, then $\res(f, p) = a_{-1}$.
+
+\remark If $f$ has a pole of order $m$ at $p$ and Laurent series $\sum_{n=-\infty}^{\infty} b_n (z - p)^n$ there then $$\res(f, p) = b_{m-1} = \dfrac{1}{(m - 1)!} \lim_{z \to p} \left[(z - p)^m f(z)\right]^{(m-1)}$$.
+
+\theorem{Residue theorem} Suppose $E \subset U \subseteq \mathbb{C}$ does not accumulate in $U$, open, and $f \in \holo{\mathbb{U} \setminus E}$. If $\gamma \sim 0$ in $U$ with $|\gamma| \cap E = \emptyset$ then $$\int_{\gamma} f(z) dz = 2 \pi i \sum_{p \in E} W(\gamma, p) \res(f, p).$$
+
+\corollary{Residue theorem inside a Jordan curve} Let $\gamma$ be a positively oriented Jordan curve inside a domain $U \subseteq \mathbb{C}$ with $\{p_1, \ldots, p_n\} \subset \interior(\gamma) \subset U$. If $f \in \holo{U \setminus \{p_1, \ldots, p_n\}}$ then $$\int_\gamma f(z) dz = 2 \pi i \sum_{k=1}^n \res(f, p_k).$$
+
+\remark If $f \in \holo{\{z \in \mathbb{C} : |z| > R\}}$, the \term{residue of $f$ at infinity} is, for $r > R$, $$\res(f, \infty) = -\dfrac{1}{2 \pi i} \int_{\sphere{0}{r}} f(z) dz.$$
 
 \end{topic}
 
